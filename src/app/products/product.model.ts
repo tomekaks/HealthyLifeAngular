@@ -9,3 +9,13 @@ export interface Product {
   price: number;
   createdBy: string;
 }
+
+export interface CreateProduct {
+  name: string;
+  calories: number;
+  proteins: number;
+  carbs: number;
+  fats: number;
+  fiber: number;
+  price: number;
+}

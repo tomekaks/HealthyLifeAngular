@@ -1,9 +1,15 @@
+@if(isAddingProduct){
+<app-new-product (close)="onCloseAddProduct()" />
+}
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-8">
       <h2>Products</h2>
       <div className="mb-3">
-        <button class="btn btn-success mb-3">Add new product</button>
+        <button class="btn btn-success mb-3" (click)="onStartAddProduct()">
+          Add new product
+        </button>
       </div>
       <table class="table table-stripe table-bordered">
         <thead>
@@ -28,7 +34,12 @@
             <td>{{ product.fiber }}</td>
             <td>
               <button class="btn btn-info">Edit</button>
-              <button class="btn btn-danger">Delete</button>
+              <button
+                class="btn btn-danger"
+                (click)="removeProduct(product.id)"
+              >
+                Delete
+              </button>
             </td>
           </tr>
           }

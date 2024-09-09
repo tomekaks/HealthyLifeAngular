@@ -1,1 +1,31 @@
-<p>exercises works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8">
+      <h2>Exercises</h2>
+      <div className="mb-3">
+        <button class="btn btn-success mb-3">Add new exercise</button>
+      </div>
+      <table class="table table-stripe table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Calories per hour</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (exercise of exercises; track exercise.id) {
+          <tr>
+            <td>{{ exercise.name }}</td>
+            <td>{{ exercise.caloriesPerHour }}</td>
+            <td>
+              <button class="btn btn-info">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

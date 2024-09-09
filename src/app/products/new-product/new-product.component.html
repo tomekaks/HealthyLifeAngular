@@ -1,0 +1,82 @@
+<div class="backdrop" (click)="onCancel()"></div>
+<dialog open>
+  <h2>Add Product</h2>
+  <form (ngSubmit)="onSubmit()">
+    <p>
+      <label for="name">Name</label>
+      <input
+        class="form-control"
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="enteredName"
+      />
+    </p>
+    <p>
+      <label for="calories">Calories</label>
+      <input
+        class="form-control"
+        type="number"
+        id="calories"
+        name="calories"
+        [(ngModel)]="enteredCalories"
+      />
+    </p>
+    <p>
+      <label for="proteins">Proteins</label>
+      <input
+        class="form-control"
+        type="number"
+        id="proteins"
+        name="proteins"
+        [(ngModel)]="enteredProteins"
+      />
+    </p>
+    <p>
+      <label for="carbs">Carbs</label>
+      <input
+        class="form-control"
+        type="number"
+        id="carbs"
+        name="carbs"
+        [(ngModel)]="enteredCarbs"
+      />
+    </p>
+    <p>
+      <label for="fats">Fats</label>
+      <input
+        class="form-control"
+        type="number"
+        id="fats"
+        name="fats"
+        [(ngModel)]="enteredFats"
+      />
+    </p>
+    <p>
+      <label for="fiber">Fiber</label>
+      <input
+        class="form-control"
+        type="number"
+        id="fiber"
+        name="fiber"
+        [(ngModel)]="enteredFiber"
+      />
+    </p>
+    <p>
+      <label for="price">Price</label>
+      <input
+        class="form-control"
+        type="number"
+        id="price"
+        name="price"
+        [(ngModel)]="enteredPrice"
+      />
+    </p>
+    <p>
+      <button type="button" class="btn btn-primary" (click)="onCancel()">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-success">Create</button>
+    </p>
+  </form>
+</dialog>
