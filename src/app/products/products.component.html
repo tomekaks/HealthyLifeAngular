@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8">
+      <h2>Products</h2>
+      <div className="mb-3">
+        <button class="btn btn-success mb-3">Add new product</button>
+      </div>
+      <table class="table table-stripe table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Calories</th>
+            <th>Proteins</th>
+            <th>Carbs</th>
+            <th>Fats</th>
+            <th>Fiber</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (product of products; track product.id) {
+          <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.calories }}</td>
+            <td>{{ product.proteins }}</td>
+            <td>{{ product.carbs }}</td>
+            <td>{{ product.fats }}</td>
+            <td>{{ product.fiber }}</td>
+            <td>
+              <button class="btn btn-info">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
