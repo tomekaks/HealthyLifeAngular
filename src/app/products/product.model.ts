@@ -18,4 +18,5 @@ export interface CreateProduct {
   fats: number;
   fiber: number;
   price: number;
+  createdBy: string;
 }

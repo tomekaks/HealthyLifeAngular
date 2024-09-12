@@ -4,3 +4,9 @@ export interface Exercise {
   caloriesPerHour: number;
   createdBy: string;
 }
+
+export interface CreateExercise {
+  name: string;
+  caloriesPerHour: number;
+  createdBy: string;
+}

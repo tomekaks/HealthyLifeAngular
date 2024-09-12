@@ -1,9 +1,15 @@
+@if(isAddingExercise){
+<app-new-exercise (close)="onCloseAddExercise()" />
+}
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-8">
       <h2>Exercises</h2>
       <div className="mb-3">
-        <button class="btn btn-success mb-3">Add new exercise</button>
+        <button class="btn btn-success mb-3" (click)="onStartAddExercise()">
+          Add new exercise
+        </button>
       </div>
       <table class="table table-stripe table-bordered">
         <thead>
@@ -20,7 +26,12 @@
             <td>{{ exercise.caloriesPerHour }}</td>
             <td>
               <button class="btn btn-info">Edit</button>
-              <button class="btn btn-danger">Delete</button>
+              <button
+                class="btn btn-danger"
+                (click)="removeExercise(exercise.id)"
+              >
+                Delete
+              </button>
             </td>
           </tr>
           }

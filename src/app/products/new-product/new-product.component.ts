@@ -36,6 +36,7 @@ export class NewProductComponent {
       fats: this.enteredFats,
       fiber: this.enteredFiber,
       price: this.enteredPrice,
+      createdBy: '',
     };
     this.productsService.addProduct(newProduct);
     this.close.emit();
