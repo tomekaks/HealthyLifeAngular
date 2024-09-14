@@ -45,6 +45,16 @@ export class ProductsComponent {
   }
 
   removeProduct(productId: number) {
-    this.productsService.removeProduct(productId);
+    const subscription = this.productsService
+      .removeProduct(productId)
+      .subscribe({
+        error: (error) => {
+          console.error('Error while removing product', productId);
+        },
+      });
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    });
   }
 }

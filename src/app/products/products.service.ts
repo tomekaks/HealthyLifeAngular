@@ -10,12 +10,12 @@ export class ProductsService {
   constructor(private httpClient: HttpClient) {}
 
   addProduct(createProduct: CreateProduct) {
-    this.httpClient.post<CreateProduct>(this.apiUrl, createProduct);
+    return this.httpClient.post<CreateProduct>(this.apiUrl, createProduct);
   }
 
   removeProduct(productId: number) {
     console.log('Removing product');
-    this.httpClient.delete(`${this.apiUrl}/${productId}`);
+    return this.httpClient.delete(`${this.apiUrl}/${productId}`);
   }
 
   loadProducts() {

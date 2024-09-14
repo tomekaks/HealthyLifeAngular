@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, DestroyRef, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProductsService } from '../products.service';
 import { CreateProduct } from '../product.model';
@@ -21,7 +21,10 @@ export class NewProductComponent {
   enteredFiber = 0;
   enteredPrice = 0;
 
-  constructor(private productsService: ProductsService) {}
+  constructor(
+    private productsService: ProductsService,
+    private destroyRef: DestroyRef
+  ) {}
 
   onCancel() {
     this.close.emit();
@@ -38,7 +41,18 @@ export class NewProductComponent {
       price: this.enteredPrice,
       createdBy: '',
     };
-    this.productsService.addProduct(newProduct);
-    this.close.emit();
+
+    const subscription = this.productsService.addProduct(newProduct).subscribe({
+      next: () => {
+        this.close.emit();
+      },
+      error: (error) => {
+        console.error('Error while adding product', newProduct);
+      },
+    });
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    });
   }
 }

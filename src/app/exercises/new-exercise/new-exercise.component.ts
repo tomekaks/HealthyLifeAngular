@@ -33,10 +33,13 @@ export class NewExerciseComponent {
       caloriesPerHour: this.enteredCalories,
       createdBy: '',
     };
-
+    console.log(`Adding exercise ${newExercise.name}`);
     const subscription = this.exercisesService
       .addExercise(newExercise)
       .subscribe({
+        next: () => {
+          this.close.emit();
+        },
         error: (error) => {
           console.error('Error while adding exercise', newExercise);
         },
@@ -45,7 +48,5 @@ export class NewExerciseComponent {
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe();
     });
-
-    this.close.emit();
   }
 }
