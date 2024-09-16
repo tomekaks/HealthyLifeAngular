@@ -1,1 +1,30 @@
-<p>diary works!</p>
+@if (loadingInitial()) {
+<div>Loading data...</div>
+}
+
+<div class="container">
+  <div class="row">
+    <div>
+      <h1>Your diary for: Today</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-7">
+      <div>
+        <h2>Meals</h2>
+      </div>
+      <app-meals-table></app-meals-table>
+    </div>
+    <div class="col-md-4">
+      <div>
+        <h2>Workouts</h2>
+      </div>
+      <app-workouts-table />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <app-daily-totals-table />
+    </div>
+  </div>
+</div>
