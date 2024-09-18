@@ -1,0 +1,32 @@
+<div class="backdrop" (click)="onCancel()"></div>
+<dialog open>
+  <h2>Add Product</h2>
+  <form (ngSubmit)="onSubmit()">
+    <p>
+      <label for="name">Name</label>
+      <input
+        class="form-control"
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="enteredName"
+      />
+    </p>
+    <p>
+      <label for="weight">Weight</label>
+      <input
+        class="form-control"
+        type="number"
+        id="weight"
+        name="weight"
+        [(ngModel)]="enteredWeight"
+      />
+    </p>
+    <p>
+      <button type="button" class="btn btn-primary" (click)="onCancel()">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-success">Create</button>
+    </p>
+  </form>
+</dialog>

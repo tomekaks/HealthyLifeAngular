@@ -47,7 +47,7 @@ export class NewProductComponent {
         this.close.emit();
       },
       error: (error) => {
-        console.error('Error while adding product', newProduct);
+        console.error('Error while adding product', error);
       },
     });
 

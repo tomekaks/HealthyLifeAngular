@@ -1,4 +1,4 @@
-<table class="table table-bordered table-striped table-hover">
+<table class="table-bordered">
   <thead>
     <tr>
       <th></th>
@@ -12,10 +12,16 @@
     </tr>
   </thead>
   <tbody>
+    @for (meal of dailySum.meals; track meal.id) {
     <tr>
-      <th>MEAL.NAME</th>
+      <th>{{ meal.name }}</th>
       <td>
-        <button class="btn btn-success">Add</button>
+        <a
+          class="btn btn-success"
+          [routerLink]="['../add-meal-items', meal.id]"
+        >
+          Add
+        </a>
       </td>
       <td></td>
       <td></td>
@@ -24,6 +30,30 @@
       <td></td>
       <td></td>
     </tr>
-    <!-- <app-meal-row></app-meal-row> -->
+    @for (mealItem of meal.mealItems; track mealItem.id) {
+    <tr>
+      <td>
+        <button class="btn btn-danger">Remove</button>
+      </td>
+      <td>{{ mealItem.product.name }}</td>
+      <td>{{ mealItem.weight }}</td>
+      <td>{{ mealItem.calories }}</td>
+      <td>{{ mealItem.proteins }}</td>
+      <td>{{ mealItem.carbs }}</td>
+      <td>{{ mealItem.fats }}</td>
+      <td>{{ mealItem.fiber }}</td>
+    </tr>
+    }
+    <tr>
+      <th>Totals</th>
+      <td></td>
+      <td></td>
+      <td>{{ meal.calories }}</td>
+      <td>{{ meal.proteins }}</td>
+      <td>{{ meal.carbs }}</td>
+      <td>{{ meal.fats }}</td>
+      <td>{{ meal.fiber }}</td>
+    </tr>
+    }
   </tbody>
 </table>

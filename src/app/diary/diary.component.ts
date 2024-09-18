@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, effect, OnInit, signal } from '@angular/core';
 import { DiaryService } from './diary.service';
 import { DailySum } from './models/dailySum.model';
 import { MealsTableComponent } from './meals-table/meals-table.component';
@@ -17,40 +17,15 @@ import { DailyTotalsTableComponent } from './daily-totals-table/daily-totals-tab
   styleUrl: './diary.component.css',
 })
 export class DiaryComponent implements OnInit {
-  dailySum: DailySum = {
-    id: 0,
-    userId: '',
-    date: '',
-    calories: 0,
-    proteins: 0,
-    carbs: 0,
-    fats: 0,
-    fiber: 0,
-    price: 0,
-    caloriesBurned: 0,
-    meals: [],
-    workouts: [],
-  };
-  loadingInitial = signal(false);
-  constructor(
-    private diaryService: DiaryService,
-    private destroyRef: DestroyRef
-  ) {}
+  dailySum!: DailySum;
+  loadingInitial = signal(true);
+  constructor(private diaryService: DiaryService) {}
 
   ngOnInit(): void {
-    this.loadingInitial.set(true);
-    const subscription = this.diaryService.loadDailySum().subscribe({
-      next: (resData) => {
-        this.dailySum = resData;
-        this.loadingInitial.set(false);
-      },
-      error: (error) => {
-        console.error('Error fetching dailySum:', error);
-      },
-    });
+    console.log(this.loadingInitial());
+    this.diaryService.loadDailySum();
+    this.dailySum = this.diaryService.dailySum();
 
-    this.destroyRef.onDestroy(() => {
-      subscription.unsubscribe();
-    });
+    this.loadingInitial.set(false);
   }
 }
