@@ -1,7 +1,8 @@
-import { Component, DestroyRef, Input, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { Product } from '../../products/product.model';
 import { ProductsService } from '../../products/products.service';
 import { NewMealItemComponent } from './new-meal-item/new-meal-item.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-meal-items',
@@ -11,18 +12,30 @@ import { NewMealItemComponent } from './new-meal-item/new-meal-item.component';
   styleUrl: './add-meal-items.component.css',
 })
 export class AddMealItemsComponent implements OnInit {
-  @Input({ required: true }) mealId!: number;
+  private route = inject(ActivatedRoute);
+  private productsService = inject(ProductsService);
+  mealId: number = Number(this.route.snapshot.paramMap.get('mealId'));
   products: Product[] = [];
   isAddingMealItem = false;
-
-  constructor(
-    private productsService: ProductsService,
-    private destroyRef: DestroyRef
-  ) {}
+  selectedProduct!: Product;
 
   ngOnInit(): void {
+    this.fetchUsers();
+    console.log(this.mealId);
+  }
+
+  onStartAddMealItem(product: Product) {
+    this.selectedProduct = product;
+    this.isAddingMealItem = true;
+  }
+
+  onCloseAddMealItem() {
+    this.isAddingMealItem = false;
+  }
+
+  private fetchUsers() {
     console.log('fetching data');
-    const subscription = this.productsService.loadProducts().subscribe({
+    this.productsService.loadProducts().subscribe({
       next: (resData) => {
         console.log(resData);
         this.products = resData;
@@ -30,10 +43,6 @@ export class AddMealItemsComponent implements OnInit {
       error: (error) => {
         console.error('Error fetching products:', error);
       },
-    });
-
-    this.destroyRef.onDestroy(() => {
-      subscription.unsubscribe();
     });
   }
 }

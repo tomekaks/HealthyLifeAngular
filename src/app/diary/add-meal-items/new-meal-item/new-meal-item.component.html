@@ -1,15 +1,16 @@
 <div class="backdrop" (click)="onCancel()"></div>
 <dialog open>
-  <h2>Add Product</h2>
+  <h2>Add meal item</h2>
   <form (ngSubmit)="onSubmit()">
     <p>
-      <label for="name">Name</label>
+      <label for="name">Product name</label>
       <input
         class="form-control"
         type="text"
         id="name"
         name="name"
-        [(ngModel)]="enteredName"
+        disabled="true"
+        [(ngModel)]="selectedProduct().name"
       />
     </p>
     <p>

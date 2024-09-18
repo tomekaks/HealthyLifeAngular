@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { DestroyRef, Injectable, signal } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { DailySum } from './models/dailySum.model';
+import { CreateMealItem } from './models/mealItem.model';
 
 @Injectable({
   providedIn: 'root',
@@ -51,5 +52,16 @@ export class DiaryService {
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe();
     });
+  }
+
+  addMealItem(mealItem: CreateMealItem) {
+    return this.httpClient
+      .post<CreateMealItem>(this.apiUrl + 'meal-items', mealItem)
+      .pipe(
+        catchError((error) => {
+          console.error('Error adding exercise:', error);
+          return throwError(() => new Error('Failed to add exercise.'));
+        })
+      );
   }
 }

@@ -12,3 +12,15 @@ export interface MealItem {
   price: number;
   product: Product;
 }
+
+export interface CreateMealItem {
+  weight: number;
+  calories: number;
+  proteins: number;
+  carbs: number;
+  fats: number;
+  fiber: number;
+  price: number;
+  mealId: number;
+  productId: number;
+}

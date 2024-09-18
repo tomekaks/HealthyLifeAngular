@@ -1,5 +1,9 @@
 @if(isAddingMealItem){
-<app-new-meal-item />
+<app-new-meal-item
+  (close)="onCloseAddMealItem()"
+  [selectedProduct]="selectedProduct"
+  [mealId]="mealId"
+/>
 }
 
 <div class="container-fluid">
@@ -29,7 +33,12 @@
             <td>{{ product.fats }}</td>
             <td>{{ product.fiber }}</td>
             <td>
-              <button class="btn btn-success">Add</button>
+              <button
+                class="btn btn-success"
+                (click)="onStartAddMealItem(product)"
+              >
+                Add
+              </button>
             </td>
           </tr>
           }
