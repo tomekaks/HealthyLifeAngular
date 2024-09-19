@@ -1,4 +1,4 @@
-@if (loadingInitial()) {
+@if (loadingInitial) {
 <div>Loading data...</div>
 } @else {
 <div class="container">
@@ -12,7 +12,7 @@
       <div>
         <h2>Meals</h2>
       </div>
-      <app-meals-table></app-meals-table>
+      <app-meals-table [meals]="dailySum.meals"></app-meals-table>
     </div>
     <div class="col-md-4">
       <div>

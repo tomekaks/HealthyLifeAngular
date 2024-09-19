@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { MealRowComponent } from './meal-row/meal-row.component';
-import { DiaryService } from '../diary.service';
-import { DailySum } from '../models/dailySum.model';
 import { MealItemRowComponent } from './meal-row/meal-item-row/meal-item-row.component';
 import { RouterLink } from '@angular/router';
+import { Meal } from '../models/meal.model';
+import { DiaryService } from '../diary.service';
 
 @Component({
   selector: 'app-meals-table',
@@ -12,12 +12,11 @@ import { RouterLink } from '@angular/router';
   templateUrl: './meals-table.component.html',
   styleUrl: './meals-table.component.css',
 })
-export class MealsTableComponent implements OnInit {
-  dailySum!: DailySum;
-  constructor(private diaryService: DiaryService) {}
+export class MealsTableComponent {
+  meals = input.required<Meal[]>();
+  private diaryService = inject(DiaryService);
 
-  ngOnInit(): void {
-    this.dailySum = this.diaryService.dailySum();
-    console.log(this.dailySum);
+  removeMealItem(itemId: number) {
+    this.diaryService.removeMealItem(itemId).subscribe();
   }
 }

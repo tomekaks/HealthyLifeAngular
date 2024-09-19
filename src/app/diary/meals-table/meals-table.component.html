@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    @for (meal of dailySum.meals; track meal.id) {
+    @for (meal of meals(); track meal.id) {
     <tr>
       <th>{{ meal.name }}</th>
       <td>
@@ -33,7 +33,9 @@
     @for (mealItem of meal.mealItems; track mealItem.id) {
     <tr>
       <td>
-        <button class="btn btn-danger">Remove</button>
+        <button class="btn btn-danger" (click)="removeMealItem(mealItem.id)">
+          Remove
+        </button>
       </td>
       <td>{{ mealItem.product.name }}</td>
       <td>{{ mealItem.weight }}</td>

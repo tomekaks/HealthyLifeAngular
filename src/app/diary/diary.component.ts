@@ -17,15 +17,38 @@ import { DailyTotalsTableComponent } from './daily-totals-table/daily-totals-tab
   styleUrl: './diary.component.css',
 })
 export class DiaryComponent implements OnInit {
-  dailySum!: DailySum;
-  loadingInitial = signal(true);
+  dailySum: DailySum = {
+    id: 0,
+    userId: '',
+    date: '',
+    calories: 0,
+    proteins: 0,
+    carbs: 0,
+    fats: 0,
+    fiber: 0,
+    price: 0,
+    caloriesBurned: 0,
+    meals: [],
+    workouts: [],
+  };
+  loadingInitial = false;
   constructor(private diaryService: DiaryService) {}
 
   ngOnInit(): void {
-    console.log(this.loadingInitial());
-    this.diaryService.loadDailySum();
-    this.dailySum = this.diaryService.dailySum();
+    this.loadingInitial = true;
+    this.loadDailySum();
+  }
 
-    this.loadingInitial.set(false);
+  loadDailySum() {
+    this.diaryService.fetchDailySum().subscribe({
+      next: (resData) => {
+        console.log(resData);
+        this.dailySum = resData;
+        this.loadingInitial = false;
+      },
+      error: (error) => {
+        console.error('Error fetching dailySum:', error);
+      },
+    });
   }
 }

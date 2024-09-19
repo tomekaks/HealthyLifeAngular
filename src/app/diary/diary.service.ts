@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { DestroyRef, Injectable, signal } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+import { catchError, throwError } from 'rxjs';
 import { DailySum } from './models/dailySum.model';
 import { CreateMealItem } from './models/mealItem.model';
 
@@ -24,34 +24,22 @@ export class DiaryService {
     workouts: [],
   });
 
-  constructor(private httpClient: HttpClient, private destroyRef: DestroyRef) {}
+  constructor(private httpClient: HttpClient) {}
 
   private formatDate = (date: Date): string => {
     return date.toISOString().split('T')[0];
   };
 
-  loadDailySum(): void {
+  fetchDailySum() {
     const newDate = this.formatDate(new Date());
-    const subscription = this.httpClient
+    return this.httpClient
       .get<DailySum>(this.apiUrl + `daily-sums/by-date/${newDate}`)
       .pipe(
         catchError((error) => {
           console.error('Error fetching dailySum:', error);
           return throwError(() => new Error('Failed to load dailySum.'));
         })
-      )
-      .subscribe({
-        next: (resData) => {
-          this.dailySum.set(resData);
-        },
-        error: (error) => {
-          console.error('Error fetching dailySyn:', error);
-        },
-      });
-
-    this.destroyRef.onDestroy(() => {
-      subscription.unsubscribe();
-    });
+      );
   }
 
   addMealItem(mealItem: CreateMealItem) {
@@ -59,9 +47,18 @@ export class DiaryService {
       .post<CreateMealItem>(this.apiUrl + 'meal-items', mealItem)
       .pipe(
         catchError((error) => {
-          console.error('Error adding exercise:', error);
-          return throwError(() => new Error('Failed to add exercise.'));
+          console.error('Error adding meal item:', error);
+          return throwError(() => new Error('Failed to add meal item.'));
         })
       );
+  }
+
+  removeMealItem(itemId: number) {
+    return this.httpClient.delete(this.apiUrl + `meal-items/${itemId}`).pipe(
+      catchError((error) => {
+        console.error('Error removing meal item:', error);
+        return throwError(() => new Error('Failed to remove meal item.'));
+      })
+    );
   }
 }
