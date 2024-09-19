@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 import { DailySum } from './models/dailySum.model';
 import { CreateMealItem } from './models/mealItem.model';
 import { CreateWorkout } from './models/workout.model';
+import { DailyGoal } from './models/dailyGoal.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DiaryService {
+  private httpClient = inject(HttpClient);
   private apiUrl = 'https://localhost:44306/api/';
   dailySum = signal<DailySum>({
     id: 0,
@@ -25,11 +27,11 @@ export class DiaryService {
     workouts: [],
   });
 
-  constructor(private httpClient: HttpClient) {}
-
   private formatDate = (date: Date): string => {
     return date.toISOString().split('T')[0];
   };
+
+  //Daily sum
 
   fetchDailySum() {
     const newDate = this.formatDate(new Date());
@@ -41,6 +43,17 @@ export class DiaryService {
           return throwError(() => new Error('Failed to load dailySum.'));
         })
       );
+  }
+
+  //Daily goal
+
+  fetchDailyGoal() {
+    return this.httpClient.get<DailyGoal>(this.apiUrl + 'daily-goals').pipe(
+      catchError((error) => {
+        console.error('Error fetching Daily goals:', error);
+        return throwError(() => new Error('Failed to load Daily goals.'));
+      })
+    );
   }
 
   //Meal items

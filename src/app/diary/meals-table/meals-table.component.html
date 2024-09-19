@@ -16,10 +16,7 @@
     <tr>
       <th>{{ meal.name }}</th>
       <td>
-        <a
-          class="btn btn-success"
-          [routerLink]="['../add-meal-items', meal.id]"
-        >
+        <a class="btn btn-success" [routerLink]="['add-meal-items', meal.id]">
           Add
         </a>
       </td>

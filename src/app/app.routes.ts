@@ -15,11 +15,11 @@ export const routes: Routes = [
     component: DiaryComponent,
   },
   {
-    path: 'add-meal-items/:mealId',
+    path: 'diary/add-meal-items/:mealId',
     component: AddMealItemsComponent,
   },
   {
-    path: 'add-workouts/:dailySumId',
+    path: 'diary/add-workouts/:dailySumId',
     component: AddWorkoutsComponent,
   },
 ];

@@ -1,9 +1,17 @@
-import { Component, DestroyRef, effect, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  effect,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { DiaryService } from './diary.service';
 import { DailySum } from './models/dailySum.model';
 import { MealsTableComponent } from './meals-table/meals-table.component';
 import { WorkoutsTableComponent } from './workouts-table/workouts-table.component';
 import { DailyTotalsTableComponent } from './daily-totals-table/daily-totals-table.component';
+import { DailyGoal } from './models/dailyGoal.model';
 
 @Component({
   selector: 'app-diary',
@@ -17,6 +25,7 @@ import { DailyTotalsTableComponent } from './daily-totals-table/daily-totals-tab
   styleUrl: './diary.component.css',
 })
 export class DiaryComponent implements OnInit {
+  private diaryService = inject(DiaryService);
   dailySum: DailySum = {
     id: 0,
     userId: '',
@@ -31,12 +40,22 @@ export class DiaryComponent implements OnInit {
     meals: [],
     workouts: [],
   };
+  dailyGoal: DailyGoal = {
+    id: 0,
+    userId: '',
+    calories: 0,
+    proteins: 0,
+    carbs: 0,
+    fats: 0,
+    fiber: 0,
+  };
   loadingInitial = false;
-  constructor(private diaryService: DiaryService) {}
 
   ngOnInit(): void {
     this.loadingInitial = true;
     this.loadDailySum();
+    this.loadDailyGoal();
+    this.loadingInitial = false;
   }
 
   loadDailySum() {
@@ -44,10 +63,20 @@ export class DiaryComponent implements OnInit {
       next: (resData) => {
         console.log(resData);
         this.dailySum = resData;
-        this.loadingInitial = false;
       },
       error: (error) => {
         console.error('Error fetching dailySum:', error);
+      },
+    });
+  }
+
+  loadDailyGoal() {
+    this.diaryService.fetchDailyGoal().subscribe({
+      next: (resData) => {
+        this.dailyGoal = resData;
+      },
+      error: (error) => {
+        console.error('Error fetching dailyGoal:', error);
       },
     });
   }

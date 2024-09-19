@@ -7,7 +7,7 @@
       <h1>Your diary for: Today</h1>
     </div>
   </div>
-  <div class="row">
+  <div class="row mb-3">
     <div class="col-md-7">
       <div>
         <h2>Meals</h2>
@@ -26,7 +26,7 @@
   </div>
   <div class="row">
     <div class="col-md-5">
-      <app-daily-totals-table />
+      <app-daily-totals-table [dailySum]="dailySum" [dailyGoal]="dailyGoal" />
     </div>
   </div>
 </div>
