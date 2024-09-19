@@ -1,6 +1,9 @@
 @if (loadingInitial) {
 <div>Loading data...</div>
-} @else {
+} @else { @if (isUpdatingGoals) {
+<app-update-goals [dailyGoals]="dailyGoals" (cancel)="onCloseUpdateGoals()" />
+}
+
 <div class="container">
   <div class="row">
     <div>
@@ -26,7 +29,12 @@
   </div>
   <div class="row">
     <div class="col-md-5">
-      <app-daily-totals-table [dailySum]="dailySum" [dailyGoal]="dailyGoal" />
+      <p>
+        <button class="btn btn-secondary" (click)="onStartUpdateGoals()">
+          Update goals
+        </button>
+      </p>
+      <app-daily-totals-table [dailySum]="dailySum" [dailyGoal]="dailyGoals" />
     </div>
   </div>
 </div>

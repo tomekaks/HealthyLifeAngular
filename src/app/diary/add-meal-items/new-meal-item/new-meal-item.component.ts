@@ -19,17 +19,7 @@ export class NewMealItemComponent {
   enteredWeight: number = 0;
 
   onSubmit() {
-    const newMealItem: CreateMealItem = {
-      weight: this.enteredWeight,
-      calories: (this.selectedProduct().calories * this.enteredWeight) / 100,
-      proteins: (this.selectedProduct().proteins * this.enteredWeight) / 100,
-      carbs: (this.selectedProduct().carbs * this.enteredWeight) / 100,
-      fats: (this.selectedProduct().fats * this.enteredWeight) / 100,
-      fiber: (this.selectedProduct().fiber * this.enteredWeight) / 100,
-      price: (this.selectedProduct().price * this.enteredWeight) / 100,
-      productId: this.selectedProduct().id,
-      mealId: this.mealId(),
-    };
+    const newMealItem: CreateMealItem = this.createMealItem();
 
     this.diaryService.addMealItem(newMealItem).subscribe({
       next: () => {
@@ -43,5 +33,31 @@ export class NewMealItemComponent {
 
   onCancel() {
     this.close.emit();
+  }
+
+  private createMealItem(): CreateMealItem {
+    return {
+      weight: this.enteredWeight,
+      calories: Math.round(
+        (this.selectedProduct().calories * this.enteredWeight) / 100
+      ),
+      proteins: Math.round(
+        (this.selectedProduct().proteins * this.enteredWeight) / 100
+      ),
+      carbs: Math.round(
+        (this.selectedProduct().carbs * this.enteredWeight) / 100
+      ),
+      fats: Math.round(
+        (this.selectedProduct().fats * this.enteredWeight) / 100
+      ),
+      fiber: Math.round(
+        (this.selectedProduct().fiber * this.enteredWeight) / 100
+      ),
+      price: Math.round(
+        (this.selectedProduct().price * this.enteredWeight) / 100
+      ),
+      productId: this.selectedProduct().id,
+      mealId: this.mealId(),
+    };
   }
 }

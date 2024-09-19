@@ -56,6 +56,17 @@ export class DiaryService {
     );
   }
 
+  updateDailyGoal(dailyGoal: DailyGoal) {
+    return this.httpClient
+      .put<DailyGoal>(this.apiUrl + 'daily-goals', dailyGoal)
+      .pipe(
+        catchError((error) => {
+          console.error('Error updating Daily goals:', error);
+          return throwError(() => new Error('Failed to update Daily goals.'));
+        })
+      );
+  }
+
   //Meal items
 
   addMealItem(mealItem: CreateMealItem) {

@@ -1,0 +1,62 @@
+<div class="backdrop" (click)="onCancel()"></div>
+<dialog open>
+  <h2>Update goals</h2>
+  <form (ngSubmit)="onSubmit()">
+    <p>
+      <label for="calories">Calories</label>
+      <input
+        class="form-control"
+        type="number"
+        id="calories"
+        name="calories"
+        [(ngModel)]="dailyGoals().calories"
+      />
+    </p>
+    <p>
+      <label for="proteins">Proteins</label>
+      <input
+        class="form-control"
+        type="number"
+        id="proteins"
+        name="proteins"
+        [(ngModel)]="dailyGoals().proteins"
+      />
+    </p>
+    <p>
+      <label for="carbs">Carbs</label>
+      <input
+        class="form-control"
+        type="number"
+        id="carbs"
+        name="carbs"
+        [(ngModel)]="dailyGoals().carbs"
+      />
+    </p>
+    <p>
+      <label for="fats">Fats</label>
+      <input
+        class="form-control"
+        type="number"
+        id="fats"
+        name="fats"
+        [(ngModel)]="dailyGoals().fats"
+      />
+    </p>
+    <p>
+      <label for="fiber">Fiber</label>
+      <input
+        class="form-control"
+        type="number"
+        id="fiber"
+        name="fiber"
+        [(ngModel)]="dailyGoals().fiber"
+      />
+    </p>
+    <p class="d-flex justify-content-between">
+      <button type="button" class="btn btn-primary" (click)="onCancel()">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-success">Update</button>
+    </p>
+  </form>
+</dialog>

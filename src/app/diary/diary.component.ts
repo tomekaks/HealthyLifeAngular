@@ -12,6 +12,7 @@ import { MealsTableComponent } from './meals-table/meals-table.component';
 import { WorkoutsTableComponent } from './workouts-table/workouts-table.component';
 import { DailyTotalsTableComponent } from './daily-totals-table/daily-totals-table.component';
 import { DailyGoal } from './models/dailyGoal.model';
+import { UpdateGoalsComponent } from './update-goals/update-goals.component';
 
 @Component({
   selector: 'app-diary',
@@ -20,6 +21,7 @@ import { DailyGoal } from './models/dailyGoal.model';
     MealsTableComponent,
     WorkoutsTableComponent,
     DailyTotalsTableComponent,
+    UpdateGoalsComponent,
   ],
   templateUrl: './diary.component.html',
   styleUrl: './diary.component.css',
@@ -40,7 +42,7 @@ export class DiaryComponent implements OnInit {
     meals: [],
     workouts: [],
   };
-  dailyGoal: DailyGoal = {
+  dailyGoals: DailyGoal = {
     id: 0,
     userId: '',
     calories: 0,
@@ -50,6 +52,7 @@ export class DiaryComponent implements OnInit {
     fiber: 0,
   };
   loadingInitial = false;
+  isUpdatingGoals = false;
 
   ngOnInit(): void {
     this.loadingInitial = true;
@@ -73,11 +76,19 @@ export class DiaryComponent implements OnInit {
   loadDailyGoal() {
     this.diaryService.fetchDailyGoal().subscribe({
       next: (resData) => {
-        this.dailyGoal = resData;
+        this.dailyGoals = resData;
       },
       error: (error) => {
         console.error('Error fetching dailyGoal:', error);
       },
     });
+  }
+
+  onStartUpdateGoals() {
+    this.isUpdatingGoals = true;
+  }
+
+  onCloseUpdateGoals() {
+    this.isUpdatingGoals = false;
   }
 }
