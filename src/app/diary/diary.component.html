@@ -18,7 +18,10 @@
       <div>
         <h2>Workouts</h2>
       </div>
-      <app-workouts-table />
+      <app-workouts-table
+        [workouts]="dailySum.workouts"
+        [dailySumId]="dailySum.id"
+      />
     </div>
   </div>
   <div class="row">

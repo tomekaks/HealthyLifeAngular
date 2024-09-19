@@ -1,0 +1,33 @@
+<div class="backdrop" (click)="onCancel()"></div>
+<dialog open>
+  <h2>Add workout</h2>
+  <form (ngSubmit)="onSubmit()">
+    <p>
+      <label for="name">Exercise name</label>
+      <input
+        class="form-control"
+        type="text"
+        id="name"
+        name="name"
+        disabled="true"
+        [(ngModel)]="selectedExercise().name"
+      />
+    </p>
+    <p>
+      <label for="minutes">Minutes</label>
+      <input
+        class="form-control"
+        type="number"
+        id="minutes"
+        name="minutes"
+        [(ngModel)]="enteredMinutes"
+      />
+    </p>
+    <p>
+      <button type="button" class="btn btn-primary" (click)="onCancel()">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-success">Create</button>
+    </p>
+  </form>
+</dialog>

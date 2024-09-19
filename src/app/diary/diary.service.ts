@@ -3,6 +3,7 @@ import { Injectable, signal } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 import { DailySum } from './models/dailySum.model';
 import { CreateMealItem } from './models/mealItem.model';
+import { CreateWorkout } from './models/workout.model';
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +43,8 @@ export class DiaryService {
       );
   }
 
+  //Meal items
+
   addMealItem(mealItem: CreateMealItem) {
     return this.httpClient
       .post<CreateMealItem>(this.apiUrl + 'meal-items', mealItem)
@@ -58,6 +61,28 @@ export class DiaryService {
       catchError((error) => {
         console.error('Error removing meal item:', error);
         return throwError(() => new Error('Failed to remove meal item.'));
+      })
+    );
+  }
+
+  //Workouts
+
+  addWorkout(workout: CreateWorkout) {
+    return this.httpClient
+      .post<CreateWorkout>(this.apiUrl + 'workouts', workout)
+      .pipe(
+        catchError((error) => {
+          console.error('Error adding workout:', error);
+          return throwError(() => new Error('Failed to add workout.'));
+        })
+      );
+  }
+
+  removeWorkout(workoutId: number) {
+    return this.httpClient.delete(this.apiUrl + `workouts/${workoutId}`).pipe(
+      catchError((error) => {
+        console.error('Error removing workout:', error);
+        return throwError(() => new Error('Failed to remove workout.'));
       })
     );
   }

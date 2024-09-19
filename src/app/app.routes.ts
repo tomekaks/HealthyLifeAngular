@@ -4,6 +4,7 @@ import { ExercisesComponent } from './exercises/exercises.component';
 import { DiaryComponent } from './diary/diary.component';
 import { HomeComponent } from './home/home.component';
 import { AddMealItemsComponent } from './diary/add-meal-items/add-meal-items.component';
+import { AddWorkoutsComponent } from './diary/add-workouts/add-workouts.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,5 +17,9 @@ export const routes: Routes = [
   {
     path: 'add-meal-items/:mealId',
     component: AddMealItemsComponent,
+  },
+  {
+    path: 'add-workouts/:dailySumId',
+    component: AddWorkoutsComponent,
   },
 ];

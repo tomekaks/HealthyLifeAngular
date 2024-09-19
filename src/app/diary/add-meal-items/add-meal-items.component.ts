@@ -20,8 +20,7 @@ export class AddMealItemsComponent implements OnInit {
   selectedProduct!: Product;
 
   ngOnInit(): void {
-    this.fetchUsers();
-    console.log(this.mealId);
+    this.fetchProducts();
   }
 
   onStartAddMealItem(product: Product) {
@@ -33,11 +32,10 @@ export class AddMealItemsComponent implements OnInit {
     this.isAddingMealItem = false;
   }
 
-  private fetchUsers() {
-    console.log('fetching data');
+  private fetchProducts() {
+    console.log('fetching products');
     this.productsService.loadProducts().subscribe({
       next: (resData) => {
-        console.log(resData);
         this.products = resData;
       },
       error: (error) => {

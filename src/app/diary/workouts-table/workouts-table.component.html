@@ -1,1 +1,37 @@
-<p>workouts-table works!</p>
+<table class="table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Exercise</th>
+      <th>Minutes</th>
+      <th>Calories burned</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (workout of workouts(); track workout.id) {
+    <tr>
+      <td>
+        <button class="btn btn-danger" (click)="removeWorkout(workout.id)">
+          Remove
+        </button>
+      </td>
+      <td>{{ workout.exercise.name }}</td>
+      <td>{{ workout.minutes }}</td>
+      <td>{{ workout.caloriesBurned }}</td>
+    </tr>
+    }
+    <tr>
+      <th>Total</th>
+      <td>
+        <button
+          class="btn btn-success"
+          [routerLink]="['../add-workouts', dailySumId()]"
+        >
+          Add
+        </button>
+      </td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>

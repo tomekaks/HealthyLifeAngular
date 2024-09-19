@@ -1,0 +1,41 @@
+@if(isAddingWorkout){
+<app-new-workout
+  (close)="onCloseAddWorkout()"
+  [selectedExercise]="selectedExercise"
+  [dailySumId]="dailySumId"
+/>
+}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8">
+      <h2>Add workouts</h2>
+      <div className="mb-3"></div>
+      <table class="table table-stripe table-bordered">
+        <thead>
+          <tr>
+            <th>Exercise</th>
+            <th>Calories per hour</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (exercise of exercises; track exercise.id) {
+          <tr>
+            <td>{{ exercise.name }}</td>
+            <td>{{ exercise.caloriesPerHour }}</td>
+            <td>
+              <button
+                class="btn btn-success"
+                (click)="onStartAddWorkout(exercise)"
+              >
+                Add
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
