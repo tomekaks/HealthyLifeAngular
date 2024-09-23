@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 .backdrop {
@@ -20,5 +21,15 @@ dialog {
   overflow: hidden;
   padding: 1rem;
   top: 5rem;
-  color: #d9d9d9;
+  color: #ffffff;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f0f2f5;
 }

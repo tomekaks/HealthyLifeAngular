@@ -5,6 +5,8 @@ import { DiaryComponent } from './diary/diary.component';
 import { HomeComponent } from './home/home.component';
 import { AddMealItemsComponent } from './diary/add-meal-items/add-meal-items.component';
 import { AddWorkoutsComponent } from './diary/add-workouts/add-workouts.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,5 +23,13 @@ export const routes: Routes = [
   {
     path: 'diary/add-workouts/:dailySumId',
     component: AddWorkoutsComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
 ];
