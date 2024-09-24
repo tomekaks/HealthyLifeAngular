@@ -7,22 +7,41 @@ import { AddMealItemsComponent } from './diary/add-meal-items/add-meal-items.com
 import { AddWorkoutsComponent } from './diary/add-workouts/add-workouts.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { authGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'products', component: ProductsComponent },
-  { path: 'exercises', component: ExercisesComponent },
   {
-    path: 'diary',
-    component: DiaryComponent,
-  },
-  {
-    path: 'diary/add-meal-items/:mealId',
-    component: AddMealItemsComponent,
-  },
-  {
-    path: 'diary/add-workouts/:dailySumId',
-    component: AddWorkoutsComponent,
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [authGuard],
+    children: [
+      {
+        path: 'products',
+        component: ProductsComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'exercises',
+        component: ExercisesComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'diary',
+        component: DiaryComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'diary/add-meal-items/:mealId',
+        component: AddMealItemsComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'diary/add-workouts/:dailySumId',
+        component: AddWorkoutsComponent,
+        canActivate: [authGuard],
+      },
+    ],
   },
   {
     path: 'login',
