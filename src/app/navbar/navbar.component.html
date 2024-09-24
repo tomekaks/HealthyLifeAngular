@@ -13,6 +13,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
+      @if (accountService.currentUser()) {
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
           <a class="nav-link" routerLink="diary" routerLinkActive="active"
@@ -30,18 +31,21 @@
           >
         </li>
       </ul>
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="btn btn-outline-primary ms-auto" routerLink="login"
-            >Sign In</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-outline-primary ms-auto" routerLink="register"
-            >Register</a
-          >
+          <a class="btn btn-outline-primary" (click)="logout()">Logout</a>
         </li>
       </ul>
+      } @else {
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="btn btn-outline-primary" routerLink="login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-primary" routerLink="register">Register</a>
+        </li>
+      </ul>
+      }
     </div>
   </div>
 </nav>
