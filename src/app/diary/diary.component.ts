@@ -57,15 +57,16 @@ export class DiaryComponent implements OnInit {
   };
   loadingInitial = false;
   isUpdatingGoals = false;
+  todaysDate = new Date();
 
   ngOnInit(): void {
     this.loadingInitial = true;
     this.loadDailyGoal();
-    this.loadDailySum();
+    this.loadDailySum(this.todaysDate);
   }
 
-  loadDailySum() {
-    this.diaryService.fetchDailySum().subscribe({
+  loadDailySum(date: Date) {
+    this.diaryService.fetchDailySum(date).subscribe({
       next: (resData) => {
         console.log(resData);
         this.dailySum = resData;
@@ -94,5 +95,10 @@ export class DiaryComponent implements OnInit {
 
   onCloseUpdateGoals() {
     this.isUpdatingGoals = false;
+  }
+
+  onDateChange(newDate: Date) {
+    console.log(newDate);
+    this.loadDailySum(newDate);
   }
 }

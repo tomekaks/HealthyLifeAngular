@@ -33,10 +33,10 @@ export class DiaryService {
 
   //Daily sum
 
-  fetchDailySum() {
-    const newDate = this.formatDate(new Date());
+  fetchDailySum(date: Date) {
+    const formatedDate = this.formatDate(date);
     return this.httpClient
-      .get<DailySum>(this.apiUrl + `daily-sums/by-date/${newDate}`)
+      .get<DailySum>(this.apiUrl + `daily-sums/by-date/${formatedDate}`)
       .pipe(
         catchError((error) => {
           console.error('Error fetching dailySum:', error);

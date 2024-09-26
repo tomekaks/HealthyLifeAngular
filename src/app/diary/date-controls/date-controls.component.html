@@ -1,17 +1,19 @@
 <div class="d-flex justify-content-center align-items-center mt-4">
-  <!-- Previous Date Link -->
-  <a class="btn btn-outline-secondary me-3" (click)="navigateToPreviousDate()">
+  <a
+    class="btn btn-outline-primary me-2 nav-btn"
+    (click)="navigateToPreviousDate()"
+  >
     <i class="bi bi-caret-left-fill"></i>
-    <!-- Bootstrap icon -->
   </a>
 
-  <!-- Current Date Display -->
-  <div class="date-display">
+  <div class="date-display px-3 py-2">
     <span class="fw-bold">{{ currentDate | date : "EEEE, MMMM d, y" }}</span>
   </div>
 
-  <!-- Next Date Link -->
-  <a class="btn btn-outline-secondary ms-3" (click)="navigateToNextDate()">
+  <a
+    class="btn btn-outline-primary ms-2 nav-btn"
+    (click)="navigateToNextDate()"
+  >
     <i class="bi bi-caret-right-fill"></i>
   </a>
 
