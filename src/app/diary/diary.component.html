@@ -1,14 +1,12 @@
 @if (loadingInitial) {
-<div>Loading data...</div>
+<app-loading></app-loading>
 } @else { @if (isUpdatingGoals) {
 <app-update-goals [dailyGoals]="dailyGoals" (cancel)="onCloseUpdateGoals()" />
 }
 
 <div class="container">
-  <div class="row">
-    <div>
-      <h1>Your diary for: Today</h1>
-    </div>
+  <div class="row mb-5">
+    <app-date-controls></app-date-controls>
   </div>
   <div class="row mb-3">
     <div class="col-md-7">

@@ -13,6 +13,8 @@ import { WorkoutsTableComponent } from './workouts-table/workouts-table.componen
 import { DailyTotalsTableComponent } from './daily-totals-table/daily-totals-table.component';
 import { DailyGoal } from './models/dailyGoal.model';
 import { UpdateGoalsComponent } from './update-goals/update-goals.component';
+import { DateControlsComponent } from './date-controls/date-controls.component';
+import { LoadingComponent } from '../common/loading/loading.component';
 
 @Component({
   selector: 'app-diary',
@@ -22,6 +24,8 @@ import { UpdateGoalsComponent } from './update-goals/update-goals.component';
     WorkoutsTableComponent,
     DailyTotalsTableComponent,
     UpdateGoalsComponent,
+    DateControlsComponent,
+    LoadingComponent,
   ],
   templateUrl: './diary.component.html',
   styleUrl: './diary.component.css',
@@ -56,9 +60,8 @@ export class DiaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingInitial = true;
-    this.loadDailySum();
     this.loadDailyGoal();
-    this.loadingInitial = false;
+    this.loadDailySum();
   }
 
   loadDailySum() {
@@ -66,6 +69,7 @@ export class DiaryComponent implements OnInit {
       next: (resData) => {
         console.log(resData);
         this.dailySum = resData;
+        this.loadingInitial = false;
       },
       error: (error) => {
         console.error('Error fetching dailySum:', error);

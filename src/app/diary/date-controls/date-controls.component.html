@@ -1,0 +1,25 @@
+<div class="d-flex justify-content-center align-items-center mt-4">
+  <!-- Previous Date Link -->
+  <a class="btn btn-outline-secondary me-3" (click)="navigateToPreviousDate()">
+    <i class="bi bi-caret-left-fill"></i>
+    <!-- Bootstrap icon -->
+  </a>
+
+  <!-- Current Date Display -->
+  <div class="date-display">
+    <span class="fw-bold">{{ currentDate | date : "EEEE, MMMM d, y" }}</span>
+  </div>
+
+  <!-- Next Date Link -->
+  <a class="btn btn-outline-secondary ms-3" (click)="navigateToNextDate()">
+    <i class="bi bi-caret-right-fill"></i>
+  </a>
+
+  <!-- <i class="bi bi-calendar ms-4" style="cursor: pointer;" (click)="openDatepicker()"></i>
+  
+  <mat-form-field appearance="fill">
+    <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (dateChange)="onDateSelected($event)" hidden>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field> -->
+</div>
