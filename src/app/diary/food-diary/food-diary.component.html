@@ -1,8 +1,6 @@
 @if (loadingInitial) {
 <app-loading></app-loading>
-} @else { @if (isUpdatingGoals) {
-<app-update-goals (cancel)="onCloseUpdateGoals()" />
-}
+} @else {
 
 <div class="container">
   <div class="row mb-5">
@@ -15,23 +13,9 @@
       </div>
       <app-meals-table [meals]="dailySum.meals"></app-meals-table>
     </div>
-    <div class="col-md-4">
-      <div class="d-flex justify-content-center">
-        <h2>Workouts</h2>
-      </div>
-      <app-workouts-table
-        [workouts]="dailySum.workouts"
-        [dailySumId]="dailySum.id"
-      />
-    </div>
   </div>
   <div class="row">
     <div class="col-md-5">
-      <p>
-        <button class="btn btn-secondary" (click)="onStartUpdateGoals()">
-          Update goals
-        </button>
-      </p>
       <app-daily-totals-table [dailySum]="dailySum" [dailyGoal]="dailyGoals" />
     </div>
   </div>

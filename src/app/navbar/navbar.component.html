@@ -19,11 +19,50 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       @if (accountService.currentUser()) {
       <ul class="navbar-nav me-auto">
-        <li class="nav-item">
+        <li
+          class="nav-item dropdown"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >Diary</a
+          >
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="diary/food"
+                routerLinkActive="active"
+                >Food</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="diary/workouts"
+                routerLinkActive="active"
+                >Workouts</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="diary/update-goals"
+                routerLinkActive="active"
+                >Update goals</a
+              >
+            </li>
+          </ul>
+        </li>
+        <!-- <li class="nav-item">
           <a class="nav-link" routerLink="diary" routerLinkActive="active"
             >Diary</a
           >
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" routerLink="products" routerLinkActive="active"
             >Products</a

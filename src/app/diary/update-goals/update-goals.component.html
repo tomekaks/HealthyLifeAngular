@@ -1,62 +1,83 @@
-<div class="backdrop" (click)="onCancel()"></div>
-<dialog open>
-  <h2>Update goals</h2>
-  <form (ngSubmit)="onSubmit()">
-    <p>
-      <label for="calories">Calories</label>
-      <input
-        class="form-control"
-        type="number"
-        id="calories"
-        name="calories"
-        [(ngModel)]="dailyGoals().calories"
-      />
-    </p>
-    <p>
-      <label for="proteins">Proteins</label>
-      <input
-        class="form-control"
-        type="number"
-        id="proteins"
-        name="proteins"
-        [(ngModel)]="dailyGoals().proteins"
-      />
-    </p>
-    <p>
-      <label for="carbs">Carbs</label>
-      <input
-        class="form-control"
-        type="number"
-        id="carbs"
-        name="carbs"
-        [(ngModel)]="dailyGoals().carbs"
-      />
-    </p>
-    <p>
-      <label for="fats">Fats</label>
-      <input
-        class="form-control"
-        type="number"
-        id="fats"
-        name="fats"
-        [(ngModel)]="dailyGoals().fats"
-      />
-    </p>
-    <p>
-      <label for="fiber">Fiber</label>
-      <input
-        class="form-control"
-        type="number"
-        id="fiber"
-        name="fiber"
-        [(ngModel)]="dailyGoals().fiber"
-      />
-    </p>
-    <p class="d-flex justify-content-between">
-      <button type="button" class="btn btn-primary" (click)="onCancel()">
-        Cancel
-      </button>
-      <button type="submit" class="btn btn-success">Update</button>
-    </p>
-  </form>
-</dialog>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header text-center bg-primary text-white">
+          <h3>Update Your Daily Goals</h3>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="calories" class="form-label">Calories</label>
+              <input
+                class="form-control"
+                type="number"
+                id="calories"
+                name="calories"
+                [(ngModel)]="dailyGoals.calories"
+                required
+                min="0"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="proteins" class="form-label">Proteins (g)</label>
+              <input
+                class="form-control"
+                type="number"
+                id="proteins"
+                name="proteins"
+                [(ngModel)]="dailyGoals.proteins"
+                required
+                min="0"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="carbs" class="form-label">Carbs (g)</label>
+              <input
+                class="form-control"
+                type="number"
+                id="carbs"
+                name="carbs"
+                [(ngModel)]="dailyGoals.carbs"
+                required
+                min="0"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="fats" class="form-label">Fats (g)</label>
+              <input
+                class="form-control"
+                type="number"
+                id="fats"
+                name="fats"
+                [(ngModel)]="dailyGoals.fats"
+                required
+                min="0"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="fiber" class="form-label">Fiber (g)</label>
+              <input
+                class="form-control"
+                type="number"
+                id="fiber"
+                name="fiber"
+                [(ngModel)]="dailyGoals.fiber"
+                required
+                min="0"
+              />
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-success">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

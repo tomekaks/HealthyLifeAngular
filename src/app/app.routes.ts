@@ -8,6 +8,9 @@ import { AddWorkoutsComponent } from './diary/add-workouts/add-workouts.componen
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { authGuard } from './auth/auth.guard';
+import { FoodDiaryComponent } from './diary/food-diary/food-diary.component';
+import { WorkoutsDiaryComponent } from './diary/workouts-diary/workouts-diary.component';
+import { UpdateGoalsComponent } from './diary/update-goals/update-goals.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,6 +32,21 @@ export const routes: Routes = [
       {
         path: 'diary',
         component: DiaryComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'diary/food',
+        component: FoodDiaryComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'diary/workouts',
+        component: WorkoutsDiaryComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'diary/update-goals',
+        component: UpdateGoalsComponent,
         canActivate: [authGuard],
       },
       {

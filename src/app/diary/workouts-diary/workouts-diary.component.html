@@ -1,20 +1,12 @@
 @if (loadingInitial) {
 <app-loading></app-loading>
-} @else { @if (isUpdatingGoals) {
-<app-update-goals (cancel)="onCloseUpdateGoals()" />
-}
+} @else {
 
 <div class="container">
   <div class="row mb-5">
     <app-date-controls (dateChange)="onDateChange($event)"></app-date-controls>
   </div>
   <div class="row mb-3">
-    <div class="col-md-7">
-      <div class="d-flex justify-content-center">
-        <h2>Meals</h2>
-      </div>
-      <app-meals-table [meals]="dailySum.meals"></app-meals-table>
-    </div>
     <div class="col-md-4">
       <div class="d-flex justify-content-center">
         <h2>Workouts</h2>
@@ -27,11 +19,6 @@
   </div>
   <div class="row">
     <div class="col-md-5">
-      <p>
-        <button class="btn btn-secondary" (click)="onStartUpdateGoals()">
-          Update goals
-        </button>
-      </p>
       <app-daily-totals-table [dailySum]="dailySum" [dailyGoal]="dailyGoals" />
     </div>
   </div>
