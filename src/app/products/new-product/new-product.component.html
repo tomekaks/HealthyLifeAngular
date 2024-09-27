@@ -2,7 +2,7 @@
 <dialog open>
   <h2>Add Product</h2>
   <form (ngSubmit)="onSubmit()">
-    <p>
+    <div>
       <label for="name">Name</label>
       <input
         class="form-control"
@@ -11,9 +11,9 @@
         name="name"
         [(ngModel)]="enteredName"
       />
-    </p>
-    <p>
-      <label for="calories">Calories</label>
+    </div>
+    <div>
+      <label for="calories">Calories (kcal)</label>
       <input
         class="form-control"
         type="number"
@@ -21,9 +21,9 @@
         name="calories"
         [(ngModel)]="enteredCalories"
       />
-    </p>
-    <p>
-      <label for="proteins">Proteins</label>
+    </div>
+    <div>
+      <label for="proteins">Proteins (g)</label>
       <input
         class="form-control"
         type="number"
@@ -31,9 +31,9 @@
         name="proteins"
         [(ngModel)]="enteredProteins"
       />
-    </p>
-    <p>
-      <label for="carbs">Carbs</label>
+    </div>
+    <div>
+      <label for="carbs">Carbs (g)</label>
       <input
         class="form-control"
         type="number"
@@ -41,9 +41,9 @@
         name="carbs"
         [(ngModel)]="enteredCarbs"
       />
-    </p>
-    <p>
-      <label for="fats">Fats</label>
+    </div>
+    <div>
+      <label for="fats">Fats (g)</label>
       <input
         class="form-control"
         type="number"
@@ -51,9 +51,9 @@
         name="fats"
         [(ngModel)]="enteredFats"
       />
-    </p>
-    <p>
-      <label for="fiber">Fiber</label>
+    </div>
+    <div>
+      <label for="fiber">Fiber (g)</label>
       <input
         class="form-control"
         type="number"
@@ -61,22 +61,35 @@
         name="fiber"
         [(ngModel)]="enteredFiber"
       />
-    </p>
-    <p>
-      <label for="price">Price</label>
-      <input
-        class="form-control"
-        type="number"
-        id="price"
-        name="price"
-        [(ngModel)]="enteredPrice"
-      />
-    </p>
-    <p>
+    </div>
+    <div>
+      <div>
+        <label for="price">Price (€)</label>
+        <input
+          class="form-control"
+          type="number"
+          id="price"
+          name="price"
+          [(ngModel)]="enteredPrice"
+        />
+      </div>
+      <div class="mb-2">
+        <label for="weight">Weight (g)</label>
+        <input
+          class="form-control"
+          type="number"
+          id="weight"
+          name="weight"
+          [(ngModel)]="enteredWeight"
+        />
+      </div>
+    </div>
+
+    <div>
       <button type="button" class="btn btn-primary" (click)="onCancel()">
         Cancel
       </button>
       <button type="submit" class="btn btn-success">Create</button>
-    </p>
+    </div>
   </form>
 </dialog>

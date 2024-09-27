@@ -3,8 +3,8 @@
 }
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-8">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10">
       <h2>Products</h2>
       <div className="mb-3">
         <button class="btn btn-success mb-3" (click)="onStartAddProduct()">
@@ -15,11 +15,13 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>Calories</th>
-            <th>Proteins</th>
-            <th>Carbs</th>
-            <th>Fats</th>
-            <th>Fiber</th>
+            <th>Calories (g)</th>
+            <th>Proteins (g)</th>
+            <th>Carbs (g)</th>
+            <th>Fats (g)</th>
+            <th>Fiber (g)</th>
+            <th>Price (€)</th>
+            <th>Price per 100g protein (€)</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -32,6 +34,8 @@
             <td>{{ product.carbs }}</td>
             <td>{{ product.fats }}</td>
             <td>{{ product.fiber }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.pricePerProteins | number : "1.2-2" }}</td>
             <td>
               <button class="btn btn-info">Edit</button>
               <button

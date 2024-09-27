@@ -7,6 +7,7 @@ export interface Product {
   fats: number;
   fiber: number;
   price: number;
+  pricePerProteins: number;
   createdBy: string;
 }
 

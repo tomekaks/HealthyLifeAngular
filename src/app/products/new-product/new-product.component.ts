@@ -1,4 +1,4 @@
-import { Component, DestroyRef, EventEmitter, Output } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProductsService } from '../products.service';
 import { CreateProduct } from '../product.model';
@@ -11,7 +11,8 @@ import { CreateProduct } from '../product.model';
   styleUrl: './new-product.component.css',
 })
 export class NewProductComponent {
-  @Output() close = new EventEmitter<void>();
+  private productsService = inject(ProductsService);
+  close = output<void>();
 
   enteredName = '';
   enteredCalories = 0;
@@ -20,11 +21,7 @@ export class NewProductComponent {
   enteredFats = 0;
   enteredFiber = 0;
   enteredPrice = 0;
-
-  constructor(
-    private productsService: ProductsService,
-    private destroyRef: DestroyRef
-  ) {}
+  enteredWeight = 0;
 
   onCancel() {
     this.close.emit();
@@ -38,21 +35,19 @@ export class NewProductComponent {
       carbs: this.enteredCarbs,
       fats: this.enteredFats,
       fiber: this.enteredFiber,
-      price: this.enteredPrice,
+      price: Number(
+        (this.enteredPrice / (this.enteredWeight / 100)).toFixed(2)
+      ),
       createdBy: '',
     };
 
-    const subscription = this.productsService.addProduct(newProduct).subscribe({
+    this.productsService.addProduct(newProduct).subscribe({
       next: () => {
         this.close.emit();
       },
       error: (error) => {
         console.error('Error while adding product', error);
       },
-    });
-
-    this.destroyRef.onDestroy(() => {
-      subscription.unsubscribe();
     });
   }
 }

@@ -1,38 +1,32 @@
-import { Component, DestroyRef } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { type Product } from './product.model';
 import { NewProductComponent } from './new-product/new-product.component';
 import { ProductsService } from './products.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [NewProductComponent],
+  imports: [NewProductComponent, CommonModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {
+  private productsService = inject(ProductsService);
   products: Product[] = [];
   isAddingProduct = false;
 
-  constructor(
-    private productsService: ProductsService,
-    private destroyRef: DestroyRef
-  ) {}
-
   ngOnInit(): void {
-    console.log('fetching data');
-    const subscription = this.productsService.loadProducts().subscribe({
+    this.productsService.loadProducts().subscribe({
       next: (resData) => {
-        console.log(resData);
-        this.products = resData;
+        this.products = resData.map((product) => ({
+          ...product,
+          pricePerProteins: this.calculatePricePerProteins(product),
+        }));
       },
       error: (error) => {
         console.error('Error fetching products:', error);
       },
-    });
-
-    this.destroyRef.onDestroy(() => {
-      subscription.unsubscribe();
     });
   }
 
@@ -45,16 +39,17 @@ export class ProductsComponent {
   }
 
   removeProduct(productId: number) {
-    const subscription = this.productsService
-      .removeProduct(productId)
-      .subscribe({
-        error: (error) => {
-          console.error('Error while removing product', productId);
-        },
-      });
-
-    this.destroyRef.onDestroy(() => {
-      subscription.unsubscribe();
+    this.productsService.removeProduct(productId).subscribe({
+      error: (error) => {
+        console.error('Error while removing product', productId);
+      },
     });
+  }
+
+  private calculatePricePerProteins(product: Product): number {
+    if (product.proteins && product.proteins > 0) {
+      return (product.price / product.proteins) * 100;
+    }
+    return 0;
   }
 }
