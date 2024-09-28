@@ -1,7 +1,7 @@
 import { Component, inject, input } from '@angular/core';
-import { Workout } from '../models/workout.model';
-import { DiaryService } from '../diary.service';
 import { RouterLink } from '@angular/router';
+import { Workout } from '../../models/workout.model';
+import { DiaryService } from '../../diary.service';
 
 @Component({
   selector: 'app-workouts-table',

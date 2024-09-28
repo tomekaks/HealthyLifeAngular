@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ExercisesService } from '../../exercises/exercises.service';
 import { ActivatedRoute } from '@angular/router';
-import { Exercise } from '../../exercises/exercise.model';
 import { NewWorkoutComponent } from './new-workout/new-workout.component';
+import { ExercisesService } from '../../../exercises/exercises.service';
+import { Exercise } from '../../../exercises/exercise.model';
 
 @Component({
   selector: 'app-add-workouts',

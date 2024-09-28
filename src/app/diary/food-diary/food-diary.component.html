@@ -6,15 +6,15 @@
   <div class="row mb-5">
     <app-date-controls (dateChange)="onDateChange($event)"></app-date-controls>
   </div>
-  <div class="row mb-3">
-    <div class="col-md-7">
+  <div class="row mb-3 justify-content-center">
+    <div class="col-md-8">
       <div class="d-flex justify-content-center">
         <h2>Meals</h2>
       </div>
       <app-meals-table [meals]="dailySum.meals"></app-meals-table>
     </div>
   </div>
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-md-5">
       <app-daily-totals-table [dailySum]="dailySum" [dailyGoal]="dailyGoals" />
     </div>

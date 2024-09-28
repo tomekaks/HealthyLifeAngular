@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './meal-totals-row.component.html',
-  styleUrl: './meal-totals-row.component.css'
+  styleUrl: './meal-totals-row.component.css',
 })
-export class MealTotalsRowComponent {
-
-}
+export class MealTotalsRowComponent {}

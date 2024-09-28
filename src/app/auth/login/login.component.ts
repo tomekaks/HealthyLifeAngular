@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     };
     this.accountsService.loginUser(loginData).subscribe({
       next: (_) => {
-        this.router.navigateByUrl('diary');
+        this.router.navigateByUrl('diary/food');
       },
       error: (error) => console.log(error),
     });

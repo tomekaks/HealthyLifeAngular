@@ -1,8 +1,8 @@
 import { Component, EventEmitter, inject, input, Output } from '@angular/core';
-import { DiaryService } from '../../diary.service';
-import { Exercise } from '../../../exercises/exercise.model';
-import { CreateWorkout } from '../../models/workout.model';
 import { FormsModule } from '@angular/forms';
+import { Exercise } from '../../../../exercises/exercise.model';
+import { DiaryService } from '../../../diary.service';
+import { CreateWorkout } from '../../../models/workout.model';
 
 @Component({
   selector: 'app-new-workout',

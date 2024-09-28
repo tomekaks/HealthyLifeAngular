@@ -2,8 +2,8 @@ import { Component, inject, input, OnInit } from '@angular/core';
 import { MealRowComponent } from './meal-row/meal-row.component';
 import { MealItemRowComponent } from './meal-row/meal-item-row/meal-item-row.component';
 import { RouterLink } from '@angular/router';
-import { Meal } from '../models/meal.model';
-import { DiaryService } from '../diary.service';
+import { Meal } from '../../models/meal.model';
+import { DiaryService } from '../../diary.service';
 
 @Component({
   selector: 'app-meals-table',
