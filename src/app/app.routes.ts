@@ -1,16 +1,15 @@
 import { Routes } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
 import { ExercisesComponent } from './exercises/exercises.component';
-import { DiaryComponent } from './diary/diary.component';
 import { HomeComponent } from './home/home.component';
-import { AddMealItemsComponent } from './diary/add-meal-items/add-meal-items.component';
-import { AddWorkoutsComponent } from './diary/add-workouts/add-workouts.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { authGuard } from './auth/auth.guard';
 import { FoodDiaryComponent } from './diary/food-diary/food-diary.component';
 import { WorkoutsDiaryComponent } from './diary/workouts-diary/workouts-diary.component';
 import { UpdateGoalsComponent } from './diary/update-goals/update-goals.component';
+import { AddMealItemsComponent } from './diary/food-diary/add-meal-items/add-meal-items.component';
+import { AddWorkoutsComponent } from './diary/workouts-diary/add-workouts/add-workouts.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,11 +29,6 @@ export const routes: Routes = [
         canActivate: [authGuard],
       },
       {
-        path: 'diary',
-        component: DiaryComponent,
-        canActivate: [authGuard],
-      },
-      {
         path: 'diary/food',
         component: FoodDiaryComponent,
         canActivate: [authGuard],
@@ -50,12 +44,12 @@ export const routes: Routes = [
         canActivate: [authGuard],
       },
       {
-        path: 'diary/add-meal-items/:mealId',
+        path: 'diary/food/add-meal-items/:mealId',
         component: AddMealItemsComponent,
         canActivate: [authGuard],
       },
       {
-        path: 'diary/add-workouts/:dailySumId',
+        path: 'diary/workouts/add-workouts/:dailySumId',
         component: AddWorkoutsComponent,
         canActivate: [authGuard],
       },

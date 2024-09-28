@@ -4,8 +4,8 @@ import { DateControlsComponent } from '../date-controls/date-controls.component'
 import { DiaryService } from '../diary.service';
 import { DailySum } from '../models/dailySum.model';
 import { DailyGoal } from '../models/dailyGoal.model';
-import { MealsTableComponent } from '../meals-table/meals-table.component';
 import { DailyTotalsTableComponent } from '../daily-totals-table/daily-totals-table.component';
+import { MealsTableComponent } from './meals-table/meals-table.component';
 
 @Component({
   selector: 'app-food-diary',

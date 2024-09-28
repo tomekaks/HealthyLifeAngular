@@ -1,8 +1,8 @@
 import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
-import { Product } from '../../products/product.model';
-import { ProductsService } from '../../products/products.service';
 import { NewMealItemComponent } from './new-meal-item/new-meal-item.component';
 import { ActivatedRoute } from '@angular/router';
+import { ProductsService } from '../../../products/products.service';
+import { Product } from '../../../products/product.model';
 
 @Component({
   selector: 'app-add-meal-items',

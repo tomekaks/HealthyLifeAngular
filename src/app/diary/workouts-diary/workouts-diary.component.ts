@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { DateControlsComponent } from '../date-controls/date-controls.component';
 import { LoadingComponent } from '../../common/loading/loading.component';
-import { WorkoutsTableComponent } from '../workouts-table/workouts-table.component';
 import { DailyGoal } from '../models/dailyGoal.model';
 import { DailySum } from '../models/dailySum.model';
 import { DiaryService } from '../diary.service';
 import { DailyTotalsTableComponent } from '../daily-totals-table/daily-totals-table.component';
+import { WorkoutsTableComponent } from './workouts-table/workouts-table.component';
 
 @Component({
   selector: 'app-workouts-diary',

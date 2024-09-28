@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MealItemRowComponent } from './meal-item-row/meal-item-row.component';
 import { MealTotalsRowComponent } from './meal-totals-row/meal-totals-row.component';
-import { Meal } from '../../models/meal.model';
+import { Meal } from '../../../models/meal.model';
 
 @Component({
   selector: 'app-meal-row',

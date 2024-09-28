@@ -1,8 +1,8 @@
 import { Component, EventEmitter, inject, input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Product } from '../../../products/product.model';
-import { CreateMealItem } from '../../models/mealItem.model';
-import { DiaryService } from '../../diary.service';
+import { DiaryService } from '../../../diary.service';
+import { Product } from '../../../../products/product.model';
+import { CreateMealItem } from '../../../models/mealItem.model';
 
 @Component({
   selector: 'app-new-meal-item',
@@ -53,8 +53,8 @@ export class NewMealItemComponent {
       fiber: Math.round(
         (this.selectedProduct().fiber * this.enteredWeight) / 100
       ),
-      price: Math.round(
-        (this.selectedProduct().price * this.enteredWeight) / 100
+      price: Number(
+        ((this.selectedProduct().price * this.enteredWeight) / 100).toFixed(2)
       ),
       productId: this.selectedProduct().id,
       mealId: this.mealId(),

@@ -7,6 +7,7 @@
       <th>Carbs</th>
       <th>Fats</th>
       <th>Fiber</th>
+      <th>Price</th>
     </tr>
     <tr>
       <th>Daily totals</th>
@@ -15,6 +16,7 @@
       <td>{{ dailySum().carbs }}</td>
       <td>{{ dailySum().fats }}</td>
       <td>{{ dailySum().fiber }}</td>
+      <td>{{ dailySum().price }}</td>
     </tr>
     <tr>
       <th>Burned</th>
@@ -23,14 +25,16 @@
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
     </tr>
     <tr>
-      <th>Your daily goals</th>
+      <th>Your daily goal</th>
       <td>{{ dailyGoal().calories }}</td>
       <td>{{ dailyGoal().proteins }}</td>
       <td>{{ dailyGoal().carbs }}</td>
       <td>{{ dailyGoal().fats }}</td>
       <td>{{ dailyGoal().fiber }}</td>
+      <td></td>
     </tr>
     <tr>
       <th>Remaining</th>
@@ -43,6 +47,7 @@
       <td>{{ dailyGoal().carbs - dailySum().carbs }}</td>
       <td>{{ dailyGoal().fats - dailySum().fats }}</td>
       <td>{{ dailyGoal().fiber - dailySum().fiber }}</td>
+      <td></td>
     </tr>
   </thead>
 </table>
