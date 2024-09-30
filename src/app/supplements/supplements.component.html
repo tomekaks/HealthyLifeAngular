@@ -1,1 +1,37 @@
-<p>supplements works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <div class="mb-3">
+        <h1>Supplements</h1>
+      </div>
+      <p-table [value]="supplements">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Serving form</th>
+            <th>Serving unit</th>
+            <th>Serving size</th>
+            <th>Servings</th>
+            <th>Total quantity</th>
+            <th>Price</th>
+            <th>Price per serving</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-supplement>
+          <tr>
+            <td>{{ supplement.name }}</td>
+            <td>{{ supplement.category }}</td>
+            <td>{{ supplement.servingForm }}</td>
+            <td>{{ supplement.servingUnit }}</td>
+            <td>{{ supplement.servingSize }}</td>
+            <td>{{ supplement.servings }}</td>
+            <td>{{ supplement.totalQuantity }}</td>
+            <td>{{ supplement.price }}</td>
+            <td>{{ supplement.pricePerServing }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

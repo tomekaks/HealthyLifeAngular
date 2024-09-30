@@ -18,18 +18,17 @@ export class SupplementsService {
   }
 
   removeSupplement(supplementId: number) {
-    console.log('Removing product');
     return this.httpClient.delete(`${this.apiUrl}/${supplementId}`);
   }
 
-  loadSupplement() {
-    return this.fetchSupplement();
+  loadSupplements() {
+    return this.fetchSupplements();
   }
 
-  private fetchSupplement() {
+  private fetchSupplements() {
     return this.httpClient.get<Supplement[]>(this.apiUrl).pipe(
       catchError((error) => {
-        return throwError(() => new Error('Something went wrong.'));
+        return throwError(() => new Error('Something went wrong.', error));
       })
     );
   }
