@@ -10,6 +10,7 @@ import { WorkoutsDiaryComponent } from './diary/workouts-diary/workouts-diary.co
 import { UpdateGoalsComponent } from './diary/update-goals/update-goals.component';
 import { AddMealItemsComponent } from './diary/food-diary/add-meal-items/add-meal-items.component';
 import { AddWorkoutsComponent } from './diary/workouts-diary/add-workouts/add-workouts.component';
+import { SupplementsComponent } from './supplements/supplements.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,6 +27,11 @@ export const routes: Routes = [
       {
         path: 'exercises',
         component: ExercisesComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'supplements',
+        component: SupplementsComponent,
         canActivate: [authGuard],
       },
       {
