@@ -13,6 +13,7 @@ import { AddWorkoutsComponent } from './diary/workouts-diary/add-workouts/add-wo
 import { SupplementsComponent } from './supplements/supplements.component';
 import { NewSupplementComponent } from './supplements/new-supplement/new-supplement.component';
 import { NewProductComponent } from './products/new-product/new-product.component';
+import { NewExerciseComponent } from './exercises/new-exercise/new-exercise.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,7 +28,7 @@ export const routes: Routes = [
         canActivate: [authGuard],
       },
       {
-        path: 'products/add-new',
+        path: 'products/new-product',
         component: NewProductComponent,
         canActivate: [authGuard],
       },
@@ -37,12 +38,17 @@ export const routes: Routes = [
         canActivate: [authGuard],
       },
       {
+        path: 'exercises/new-exercise',
+        component: NewExerciseComponent,
+        canActivate: [authGuard],
+      },
+      {
         path: 'supplements',
         component: SupplementsComponent,
         canActivate: [authGuard],
       },
       {
-        path: 'supplements/add-new',
+        path: 'supplements/new-supplement',
         component: NewSupplementComponent,
         canActivate: [authGuard],
       },

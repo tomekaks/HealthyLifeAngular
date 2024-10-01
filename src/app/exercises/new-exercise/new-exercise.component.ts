@@ -1,52 +1,55 @@
+import { Component, inject, OnInit } from '@angular/core';
 import {
-  Component,
-  DestroyRef,
-  EventEmitter,
-  inject,
-  Output,
-} from '@angular/core';
-import { FormsModule } from '@angular/forms';
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ExercisesService } from '../exercises.service';
 import { CreateExercise } from '../exercise.model';
+import { NgClass } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-new-exercise',
   standalone: true,
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule, NgClass, RouterLink],
   templateUrl: './new-exercise.component.html',
   styleUrl: './new-exercise.component.css',
 })
-export class NewExerciseComponent {
-  @Output() close = new EventEmitter<void>();
-  enteredName = '';
-  enteredCalories = 0;
-  private exercisesService = inject(ExercisesService);
-  private destroyRef = inject(DestroyRef);
+export class NewExerciseComponent implements OnInit {
+  exerciseForm: FormGroup = new FormGroup({});
 
-  onCancel() {
-    this.close.emit();
+  private exercisesService = inject(ExercisesService);
+  private formBuilder = inject(FormBuilder);
+
+  ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  initializeForm() {
+    this.exerciseForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      caloriesPerHour: [0, [Validators.required, Validators.min(0)]],
+    });
   }
 
   onSubmit() {
+    if (this.exerciseForm.invalid) {
+      return;
+    }
+
     const newExercise: CreateExercise = {
-      name: this.enteredName,
-      caloriesPerHour: this.enteredCalories,
+      ...this.exerciseForm.value,
       createdBy: '',
     };
-    console.log(`Adding exercise ${newExercise.name}`);
-    const subscription = this.exercisesService
-      .addExercise(newExercise)
-      .subscribe({
-        next: () => {
-          this.close.emit();
-        },
-        error: (error) => {
-          console.error('Error while adding exercise', newExercise);
-        },
-      });
 
-    this.destroyRef.onDestroy(() => {
-      subscription.unsubscribe();
+    this.exercisesService.addExercise(newExercise).subscribe({
+      next: () => {},
+      error: (error) => {
+        console.error('Error while adding exercise', newExercise);
+      },
     });
   }
 }
