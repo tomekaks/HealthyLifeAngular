@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import {
   AbstractControl,
@@ -25,6 +25,7 @@ import { Router } from '@angular/router';
     MatCardModule,
     MatIconModule,
     NgIf,
+    NgClass,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
@@ -33,7 +34,7 @@ export class RegisterComponent implements OnInit {
   private accountsService = inject(AccountsService);
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
-  regiserForm: FormGroup = new FormGroup({});
+  registerForm: FormGroup = new FormGroup({});
   hide = true;
 
   ngOnInit(): void {
@@ -41,7 +42,7 @@ export class RegisterComponent implements OnInit {
   }
 
   initializeForm() {
-    this.regiserForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: [
@@ -49,9 +50,9 @@ export class RegisterComponent implements OnInit {
         [Validators.required, this.matchValues('password')],
       ],
     });
-    this.regiserForm.controls['password'].valueChanges.subscribe({
+    this.registerForm.controls['password'].valueChanges.subscribe({
       next: () =>
-        this.regiserForm.controls['confirmPassword'].updateValueAndValidity(),
+        this.registerForm.controls['confirmPassword'].updateValueAndValidity(),
     });
   }
 
@@ -65,9 +66,9 @@ export class RegisterComponent implements OnInit {
 
   register() {
     const newUser: Register = {
-      email: this.regiserForm.value['email'],
-      userName: '',
-      password: this.regiserForm.value['password'],
+      email: this.registerForm.value['email'],
+      userName: this.registerForm.value['email'],
+      password: this.registerForm.value['password'],
     };
     this.accountsService.registerUser(newUser).subscribe({
       next: (_) => this.router.navigateByUrl('login'),

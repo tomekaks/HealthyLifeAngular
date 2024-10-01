@@ -1,0 +1,302 @@
+<!-- new-supplement.component.html -->
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card w-50 shadow-lg">
+    <div class="card-header text-center">
+      <h2 class="text-primary mb-0">Add New Supplement</h2>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="supplementForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    supplementForm.get('name')?.invalid &&
+                    supplementForm.get('name')?.touched
+                }"
+                required
+              />
+              <div class="invalid-feedback">Name is required.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="category" class="form-label">Category</label>
+              <input
+                type="text"
+                id="category"
+                formControlName="category"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    supplementForm.get('category')?.invalid &&
+                    supplementForm.get('category')?.touched
+                }"
+                required
+              />
+              <div class="invalid-feedback">Category is required.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="servingForm" class="form-label">Serving Form</label>
+              <select
+                id="servingForm"
+                formControlName="servingForm"
+                class="form-select"
+                [ngClass]="{
+                  'is-invalid':
+                    supplementForm.get('servingForm')?.invalid &&
+                    supplementForm.get('servingForm')?.touched
+                }"
+                required
+              >
+                <option value="">Select a serving form</option>
+                <option
+                  *ngFor="let option of servingForms"
+                  [value]="option.value"
+                >
+                  {{ option.label }}
+                </option>
+              </select>
+              <div class="invalid-feedback">Please select a serving form.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="servingUnit" class="form-label"
+                >Serving Unit (e.g., g, ml)</label
+              >
+              <select
+                id="servingUnit"
+                formControlName="servingUnit"
+                class="form-select"
+                [ngClass]="{
+                  'is-invalid':
+                    supplementForm.get('servingUnit')?.invalid &&
+                    supplementForm.get('servingUnit')?.touched
+                }"
+                required
+              >
+                <option *ngFor="let unit of servingUnits" [value]="unit.value">
+                  {{ unit.label }}
+                </option>
+              </select>
+              <div class="invalid-feedback">Please select a serving unit.</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="servingSize" class="form-label">Serving Size</label>
+              <input
+                type="number"
+                id="servingSize"
+                formControlName="servingSize"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    supplementForm.get('servingSize')?.invalid &&
+                    supplementForm.get('servingSize')?.touched
+                }"
+                required
+                min="0"
+              />
+              <div class="invalid-feedback">
+                Serving size must be greater than or equal to 0.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="servings" class="form-label">Servings</label>
+              <input
+                type="number"
+                id="servings"
+                formControlName="servings"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    supplementForm.get('servings')?.invalid &&
+                    supplementForm.get('servings')?.touched
+                }"
+                required
+                min="0"
+              />
+              <div class="invalid-feedback">
+                Servings must be greater than or equal to 0.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="totalQuantity" class="form-label"
+                >Total Quantity</label
+              >
+              <input
+                type="number"
+                id="totalQuantity"
+                formControlName="totalQuantity"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    supplementForm.get('totalQuantity')?.invalid &&
+                    supplementForm.get('totalQuantity')?.touched
+                }"
+                required
+                min="0"
+              />
+              <div class="invalid-feedback">
+                Total quantity must be greater than or equal to 0.
+              </div>
+            </div>
+
+            <!-- Price Field -->
+            <div class="mb-3">
+              <label for="price" class="form-label">Price (€)</label>
+              <input
+                type="number"
+                id="price"
+                formControlName="price"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    supplementForm.get('price')?.invalid &&
+                    supplementForm.get('price')?.touched
+                }"
+                required
+                min="0"
+              />
+              <div class="invalid-feedback">
+                Price must be greater than or equal to 0.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <button type="button" class="btn btn-secondary" routerLink="../">
+            Back
+          </button>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="supplementForm.invalid"
+          >
+            Add
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container d-flex justify-content-center align-items-center vh-100">
+  <p-panel header="Add New Supplement" class="w-50">
+    <form [formGroup]="supplementForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-2">
+            <label for="name">Name</label>
+            <input
+              pInputText
+              class="form-control"
+              type="text"
+              formControlName="name"
+            />
+          </div>
+
+          <div class="mb-2">
+            <label for="category">Category</label>
+            <input
+              pInputText
+              class="form-control"
+              type="text"
+              formControlName="category"
+              required
+            />
+          </div>
+
+          <div class="mb-2">
+            <label for="servingForm">Serving Form</label>
+            <p-dropdown
+              formControlName="servingForm"
+              [options]="servingForms"
+              optionLabel="label"
+              placeholder="Select a serving form"
+              required
+              styleClass="form-control"
+            ></p-dropdown>
+          </div>
+
+          <div class="mb-2">
+            <label for="servingUnit">Serving Unit (e.g., g, ml)</label>
+            <p-dropdown
+              formControlName="servingUnit"
+              [options]="servingUnits"
+              optionLabel="label"
+              placeholder="Select a serving unit"
+              required
+              styleClass="form-control"
+            ></p-dropdown>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="mb-2">
+            <label for="servingSize">Serving Size</label>
+            <p-inputNumber
+              formControlName="servingSize"
+              type="number"
+              inputId="servingSize"
+              required
+              [min]="0"
+              styleClass="form-control"
+            />
+          </div>
+
+          <div class="mb-2">
+            <label for="servings">Servings</label>
+            <p-inputNumber
+              formControlName="servings"
+              inputId="servings"
+              required
+              min="0"
+              styleClass="form-control"
+            />
+          </div>
+
+          <div class="mb-2">
+            <label for="totalQuantity">Total Quantity</label>
+            <p-inputNumber
+              formControlName="totalQuantity"
+              inputId="totalQuantity"
+              required
+              min="0"
+              styleClass="form-control"
+            />
+          </div>
+
+          <div class="mb-2">
+            <label for="price">Price (€)</label>
+            <p-inputNumber
+              formControlName="price"
+              inputId="price"
+              required
+              min="0"
+              styleClass="form-control"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between mt-3">
+        <button type="button" class="btn btn-secondary" routerLink="../">
+          Back
+        </button>
+        <button type="submit" class="btn btn-success">Add</button>
+      </div>
+    </form>
+  </p-panel>
+</div> -->

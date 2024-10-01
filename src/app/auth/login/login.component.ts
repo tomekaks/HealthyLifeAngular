@@ -11,11 +11,12 @@ import { MatInputModule } from '@angular/material/input';
 import { AccountsService } from '../accounts.service';
 import { Router } from '@angular/router';
 import { Login } from '../models/login.model';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, MatInputModule, MatCardModule, MatIconModule],
+  imports: [ReactiveFormsModule, NgClass, NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })

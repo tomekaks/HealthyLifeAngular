@@ -4,6 +4,11 @@
       <div class="mb-3">
         <h1>Supplements</h1>
       </div>
+      <div class="mb-2">
+        <button class="btn btn-success" routerLink="add-new">
+          Add new supplement
+        </button>
+      </div>
       <p-table [value]="supplements">
         <ng-template pTemplate="header">
           <tr>
@@ -16,6 +21,7 @@
             <th>Total quantity</th>
             <th>Price</th>
             <th>Price per serving</th>
+            <th></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-supplement>
@@ -29,6 +35,7 @@
             <td>{{ supplement.totalQuantity }}</td>
             <td>{{ supplement.price }}</td>
             <td>{{ supplement.pricePerServing }}</td>
+            <td></td>
           </tr>
         </ng-template>
       </p-table>

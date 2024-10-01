@@ -1,31 +1,62 @@
-<div class="login-container">
-  <mat-card class="login-card">
-    <h1>Login</h1>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card login-card">
+    <div class="card-body">
+      <h1 class="text-primary text-center">Login</h1>
 
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <div class="formControl mb-2">
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" required />
-          @if (loginForm.get('email')?.invalid) {
-          <mat-error>Please enter a valid email</mat-error>}
-        </mat-form-field>
-      </div>
-      <div class="formControl mb-2">
-        <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password" required />
-          @if (loginForm.get('password')?.hasError('required')) {
-          <mat-error>Password is required</mat-error>}
-        </mat-form-field>
-      </div>
-      <button
-        class="btn btn-primary login-button"
-        type="submit"
-        [disabled]="loginForm.invalid"
-      >
-        Login
-      </button>
-    </form>
-  </mat-card>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="form-group mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                loginForm.get('email')?.invalid &&
+                loginForm.get('email')?.touched
+            }"
+            required
+          />
+          <div class="invalid-feedback">
+            Please enter a valid email address.
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                loginForm.get('password')?.invalid &&
+                loginForm.get('password')?.touched
+            }"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="loginForm.get('password')?.hasError('required')"
+          >
+            Password is required.
+          </div>
+        </div>
+
+        <button
+          class="btn btn-primary w-100"
+          type="submit"
+          [disabled]="loginForm.invalid"
+        >
+          Login
+        </button>
+
+        <a href="#" class="forgot-password text-primary mt-3 d-block">
+          Forgot Password?
+        </a>
+      </form>
+    </div>
+  </div>
 </div>

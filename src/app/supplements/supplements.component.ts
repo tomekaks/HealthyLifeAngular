@@ -2,18 +2,19 @@ import { Component, inject, OnInit } from '@angular/core';
 import { SupplementsService } from './supplements.service';
 import { Supplement } from './supplement.model';
 import { TableModule } from 'primeng/table';
+import { NewSupplementComponent } from './new-supplement/new-supplement.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-supplements',
   standalone: true,
-  imports: [TableModule],
+  imports: [TableModule, NewSupplementComponent, RouterLink],
   templateUrl: './supplements.component.html',
   styleUrl: './supplements.component.css',
 })
 export class SupplementsComponent implements OnInit {
   private supplementsService = inject(SupplementsService);
   supplements: Supplement[] = [];
-  isAddingSupplement = false;
 
   ngOnInit(): void {
     this.supplementsService.loadSupplements().subscribe({
@@ -32,13 +33,5 @@ export class SupplementsComponent implements OnInit {
         console.error('Error while removing supplement', error);
       },
     });
-  }
-
-  onStartAddSupplement() {
-    this.isAddingSupplement = true;
-  }
-
-  onCloseAddSupplement() {
-    this.isAddingSupplement = false;
   }
 }
