@@ -1,8 +1,7 @@
-<!-- new-supplement.component.html -->
 <div class="container d-flex justify-content-center align-items-center vh-100">
   <div class="card w-50 shadow-lg">
-    <div class="card-header text-center">
-      <h2 class="text-primary mb-0">Add New Supplement</h2>
+    <div class="card-header text-center bg-primary text-white">
+      <h2>Add New Supplement</h2>
     </div>
     <div class="card-body">
       <form [formGroup]="supplementForm" (ngSubmit)="onSubmit()">
@@ -152,7 +151,6 @@
               </div>
             </div>
 
-            <!-- Price Field -->
             <div class="mb-3">
               <label for="price" class="form-label">Price (€)</label>
               <input
@@ -191,112 +189,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="container d-flex justify-content-center align-items-center vh-100">
-  <p-panel header="Add New Supplement" class="w-50">
-    <form [formGroup]="supplementForm" (ngSubmit)="onSubmit()">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="mb-2">
-            <label for="name">Name</label>
-            <input
-              pInputText
-              class="form-control"
-              type="text"
-              formControlName="name"
-            />
-          </div>
-
-          <div class="mb-2">
-            <label for="category">Category</label>
-            <input
-              pInputText
-              class="form-control"
-              type="text"
-              formControlName="category"
-              required
-            />
-          </div>
-
-          <div class="mb-2">
-            <label for="servingForm">Serving Form</label>
-            <p-dropdown
-              formControlName="servingForm"
-              [options]="servingForms"
-              optionLabel="label"
-              placeholder="Select a serving form"
-              required
-              styleClass="form-control"
-            ></p-dropdown>
-          </div>
-
-          <div class="mb-2">
-            <label for="servingUnit">Serving Unit (e.g., g, ml)</label>
-            <p-dropdown
-              formControlName="servingUnit"
-              [options]="servingUnits"
-              optionLabel="label"
-              placeholder="Select a serving unit"
-              required
-              styleClass="form-control"
-            ></p-dropdown>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="mb-2">
-            <label for="servingSize">Serving Size</label>
-            <p-inputNumber
-              formControlName="servingSize"
-              type="number"
-              inputId="servingSize"
-              required
-              [min]="0"
-              styleClass="form-control"
-            />
-          </div>
-
-          <div class="mb-2">
-            <label for="servings">Servings</label>
-            <p-inputNumber
-              formControlName="servings"
-              inputId="servings"
-              required
-              min="0"
-              styleClass="form-control"
-            />
-          </div>
-
-          <div class="mb-2">
-            <label for="totalQuantity">Total Quantity</label>
-            <p-inputNumber
-              formControlName="totalQuantity"
-              inputId="totalQuantity"
-              required
-              min="0"
-              styleClass="form-control"
-            />
-          </div>
-
-          <div class="mb-2">
-            <label for="price">Price (€)</label>
-            <p-inputNumber
-              formControlName="price"
-              inputId="price"
-              required
-              min="0"
-              styleClass="form-control"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div class="d-flex justify-content-between mt-3">
-        <button type="button" class="btn btn-secondary" routerLink="../">
-          Back
-        </button>
-        <button type="submit" class="btn btn-success">Add</button>
-      </div>
-    </form>
-  </p-panel>
-</div> -->

@@ -4,7 +4,6 @@ import { SupplementsService } from '../supplements.service';
 import {
   FormBuilder,
   FormGroup,
-  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -18,17 +17,7 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 @Component({
   selector: 'app-new-supplement',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    PanelModule,
-    InputTextModule,
-    InputNumberModule,
-    RouterLink,
-    DropdownModule,
-    NgClass,
-    NgIf,
-    NgFor,
-  ],
+  imports: [ReactiveFormsModule, RouterLink, NgClass, NgIf, NgFor],
   templateUrl: './new-supplement.component.html',
   styleUrl: './new-supplement.component.css',
 })
@@ -68,32 +57,18 @@ export class NewSupplementComponent implements OnInit {
     });
   }
 
-  // enteredName = '';
-  // enteredCategory = '';
-  // enteredServingForm = '';
-  // enteredServingUnit = '';
-  // enteredServingSize = 0;
-  // enteredServings = 0;
-  // enteredTotalQuantity = 0;
-  // enteredPrice = 0;
-
   calculatePricePerServing(servings: number, price: number): number {
     return servings > 0 ? Number((price / servings).toFixed(2)) : 0;
   }
 
   onSubmit() {
+    const formValues = this.supplementForm.value;
+
     const newSupplement: CreateSupplement = {
-      name: this.supplementForm.value['name'],
-      category: this.supplementForm.value['category'],
-      servingForm: this.supplementForm.value['servingForm'],
-      servingUnit: this.supplementForm.value['servingUnit'],
-      servingSize: this.supplementForm.value['servingSize'],
-      servings: this.supplementForm.value['servings'],
-      totalQuantity: this.supplementForm.value['totalQuantity'],
-      price: this.supplementForm.value['price'],
+      ...formValues,
       pricePerServing: this.calculatePricePerServing(
-        this.supplementForm.value['servings'],
-        this.supplementForm.value['price']
+        formValues.servings,
+        formValues.price
       ),
       createdBy: '',
     };

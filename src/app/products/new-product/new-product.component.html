@@ -1,95 +1,186 @@
-<div class="backdrop" (click)="onCancel()"></div>
-<dialog open>
-  <h2>Add Product</h2>
-  <form (ngSubmit)="onSubmit()">
-    <div>
-      <label for="name">Name</label>
-      <input
-        class="form-control"
-        type="text"
-        id="name"
-        name="name"
-        [(ngModel)]="enteredName"
-      />
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card w-50 shadow-lg">
+    <div class="card-header text-center bg-primary text-white">
+      <h2>Add New Product</h2>
     </div>
-    <div>
-      <label for="calories">Calories (kcal)</label>
-      <input
-        class="form-control"
-        type="number"
-        id="calories"
-        name="calories"
-        [(ngModel)]="enteredCalories"
-      />
-    </div>
-    <div>
-      <label for="fats">Fats (g)</label>
-      <input
-        class="form-control"
-        type="number"
-        id="fats"
-        name="fats"
-        [(ngModel)]="enteredFats"
-      />
-    </div>
-    <div>
-      <label for="carbs">Carbs (g)</label>
-      <input
-        class="form-control"
-        type="number"
-        id="carbs"
-        name="carbs"
-        [(ngModel)]="enteredCarbs"
-      />
-    </div>
-    <div>
-      <label for="proteins">Proteins (g)</label>
-      <input
-        class="form-control"
-        type="number"
-        id="proteins"
-        name="proteins"
-        [(ngModel)]="enteredProteins"
-      />
-    </div>
-    <div>
-      <label for="fiber">Fiber (g)</label>
-      <input
-        class="form-control"
-        type="number"
-        id="fiber"
-        name="fiber"
-        [(ngModel)]="enteredFiber"
-      />
-    </div>
-    <div>
-      <div>
-        <label for="price">Price (€)</label>
-        <input
-          class="form-control"
-          type="number"
-          id="price"
-          name="price"
-          [(ngModel)]="enteredPrice"
-        />
-      </div>
-      <div class="mb-2">
-        <label for="weight">Weight (g)</label>
-        <input
-          class="form-control"
-          type="number"
-          id="weight"
-          name="weight"
-          [(ngModel)]="enteredWeight"
-        />
-      </div>
-    </div>
+    <div class="card-body">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    productForm.get('name')?.invalid &&
+                    productForm.get('name')?.touched
+                }"
+                required
+              />
+              <div class="invalid-feedback">Name is required.</div>
+            </div>
 
-    <div>
-      <button type="button" class="btn btn-primary" (click)="onCancel()">
-        Cancel
-      </button>
-      <button type="submit" class="btn btn-success">Create</button>
+            <div class="mb-3">
+              <label for="calories" class="form-label">Calories (kcal)</label>
+              <input
+                type="number"
+                id="calories"
+                formControlName="calories"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    productForm.get('calories')?.invalid &&
+                    productForm.get('calories')?.touched
+                }"
+                required
+                min="0"
+              />
+              <div class="invalid-feedback">
+                Calories must be greater than or equal to 0.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="fats" class="form-label">Fats (g)</label>
+              <input
+                type="number"
+                id="fats"
+                formControlName="fats"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    productForm.get('fats')?.invalid &&
+                    productForm.get('fats')?.touched
+                }"
+                required
+                min="0"
+              />
+              <div class="invalid-feedback">
+                Fats must be greater than or equal to 0.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="carbs" class="form-label">Carbs (g)</label>
+              <input
+                type="number"
+                id="carbs"
+                formControlName="carbs"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    productForm.get('carbs')?.invalid &&
+                    productForm.get('carbs')?.touched
+                }"
+                required
+                min="0"
+              />
+              <div class="invalid-feedback">
+                Carbs must be greater than or equal to 0.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="proteins" class="form-label">Proteins (g)</label>
+              <input
+                type="number"
+                id="proteins"
+                formControlName="proteins"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    productForm.get('proteins')?.invalid &&
+                    productForm.get('proteins')?.touched
+                }"
+                required
+                min="0"
+              />
+              <div class="invalid-feedback">
+                Proteins must be greater than or equal to 0.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="fiber" class="form-label">Fiber (g)</label>
+              <input
+                type="number"
+                id="fiber"
+                formControlName="fiber"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    productForm.get('fiber')?.invalid &&
+                    productForm.get('fiber')?.touched
+                }"
+                required
+                min="0"
+              />
+              <div class="invalid-feedback">
+                Fiber must be greater than or equal to 0.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="price" class="form-label">Price (€)</label>
+              <input
+                type="number"
+                id="price"
+                formControlName="price"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    productForm.get('price')?.invalid &&
+                    productForm.get('price')?.touched
+                }"
+                required
+                min="0"
+              />
+              <div class="invalid-feedback">
+                Price must be greater than or equal to 0.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="weight" class="form-label">Weight (g)</label>
+              <input
+                type="number"
+                id="weight"
+                formControlName="weight"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    productForm.get('weight')?.invalid &&
+                    productForm.get('weight')?.touched
+                }"
+                required
+                min="0"
+              />
+              <div class="invalid-feedback">
+                Weight must be greater than or equal to 0.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <button type="button" class="btn btn-secondary" routerLink="../">
+            Back
+          </button>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="productForm.invalid"
+          >
+            Add
+          </button>
+        </div>
+      </form>
     </div>
-  </form>
-</dialog>
+  </div>
+</div>

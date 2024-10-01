@@ -12,6 +12,7 @@ import { AddMealItemsComponent } from './diary/food-diary/add-meal-items/add-mea
 import { AddWorkoutsComponent } from './diary/workouts-diary/add-workouts/add-workouts.component';
 import { SupplementsComponent } from './supplements/supplements.component';
 import { NewSupplementComponent } from './supplements/new-supplement/new-supplement.component';
+import { NewProductComponent } from './products/new-product/new-product.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,6 +24,11 @@ export const routes: Routes = [
       {
         path: 'products',
         component: ProductsComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'products/add-new',
+        component: NewProductComponent,
         canActivate: [authGuard],
       },
       {
