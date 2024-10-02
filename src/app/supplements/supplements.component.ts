@@ -2,13 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { SupplementsService } from './supplements.service';
 import { Supplement } from './supplement.model';
 import { TableModule } from 'primeng/table';
-import { NewSupplementComponent } from './new-supplement/new-supplement.component';
 import { RouterLink } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-supplements',
   standalone: true,
-  imports: [TableModule, NewSupplementComponent, RouterLink],
+  imports: [TableModule, RouterLink, CurrencyPipe],
   templateUrl: './supplements.component.html',
   styleUrl: './supplements.component.css',
 })
@@ -27,7 +27,9 @@ export class SupplementsComponent implements OnInit {
     });
   }
 
-  removeSupplement(supplementId: number) {
+  editSupplement(supplement: Supplement) {}
+
+  deleteSupplement(supplementId: number) {
     this.supplementsService.removeSupplement(supplementId).subscribe({
       error: (error) => {
         console.error('Error while removing supplement', error);

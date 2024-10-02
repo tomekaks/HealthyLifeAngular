@@ -1,4 +1,70 @@
-<div class="container">
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Supplements</h1>
+        <button class="btn btn-success btn-lg" routerLink="new-supplement">
+          <i class="bi bi-plus-circle me-2"></i>Add New Supplement
+        </button>
+      </div>
+
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <p-table
+            [value]="supplements"
+            class="p-datatable-striped p-datatable-hoverable p-datatable-sm"
+            [responsive]="true"
+          >
+            <ng-template pTemplate="header">
+              <tr class="bg-primary text-white">
+                <th>Name</th>
+                <th>Category</th>
+                <th>Serving Form</th>
+                <th>Serving Unit</th>
+                <th>Serving Size</th>
+                <th>Servings</th>
+                <th>Total Quantity</th>
+                <th>Price (€)</th>
+                <th>Price per Serving (€)</th>
+                <th>Actions</th>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-supplement>
+              <tr>
+                <td>{{ supplement.name }}</td>
+                <td>{{ supplement.category }}</td>
+                <td>{{ supplement.servingForm }}</td>
+                <td>{{ supplement.servingUnit }}</td>
+                <td>{{ supplement.servingSize }}</td>
+                <td>{{ supplement.servings }}</td>
+                <td>{{ supplement.totalQuantity }}</td>
+                <td>{{ supplement.price | currency : "EUR" }}</td>
+                <td>{{ supplement.pricePerServing | currency : "EUR" }}</td>
+                <td>
+                  <button
+                    class="btn btn-info btn-sm me-2"
+                    (click)="editSupplement(supplement)"
+                  >
+                    <i class="bi bi-pencil-square"></i> Edit
+                  </button>
+                  <button
+                    class="btn btn-danger btn-sm"
+                    (click)="deleteSupplement(supplement.id)"
+                  >
+                    <i class="bi bi-trash"></i> Delete
+                  </button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
   <div class="row">
     <div class="col-10">
       <div class="mb-3">
@@ -41,4 +107,4 @@
       </p-table>
     </div>
   </div>
-</div>
+</div> -->

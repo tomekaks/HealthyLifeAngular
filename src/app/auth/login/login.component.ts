@@ -5,9 +5,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import { AccountsService } from '../accounts.service';
 import { Router } from '@angular/router';
 import { Login } from '../models/login.model';

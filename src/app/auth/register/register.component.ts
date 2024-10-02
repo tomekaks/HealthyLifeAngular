@@ -3,15 +3,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import { AccountsService } from '../accounts.service';
 import { Register } from '../models/register.model';
 import { Router } from '@angular/router';
@@ -19,14 +15,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatInputModule,
-    MatCardModule,
-    MatIconModule,
-    NgIf,
-    NgClass,
-  ],
+  imports: [ReactiveFormsModule, NgIf, NgClass],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
