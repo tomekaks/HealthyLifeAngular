@@ -11,22 +11,77 @@
       <div class="card shadow-lg">
         <div class="card-body">
           <p-table
+            #dt
             [value]="supplements"
-            class="p-datatable-striped p-datatable-hoverable p-datatable-sm"
+            styleClass="p-datatable-striped p-datatable-hoverable p-datatable-gridlines p-datatable-sm"
             [responsive]="true"
+            [paginator]="true"
+            [rows]="10"
           >
             <ng-template pTemplate="header">
-              <tr class="bg-primary text-white">
-                <th>Name</th>
-                <th>Category</th>
-                <th>Serving Form</th>
-                <th>Serving Unit</th>
-                <th>Serving Size</th>
-                <th>Servings</th>
-                <th>Total Quantity</th>
-                <th>Price (€)</th>
-                <th>Price per Serving (€)</th>
+              <tr>
+                <th pSortableColumn="name">Name <p-sortIcon field="name" /></th>
+                <th pSortableColumn="category">
+                  Category <p-sortIcon field="category" />
+                </th>
+                <th pSortableColumn="servingForm">
+                  Serving Form <p-sortIcon field="category" />
+                </th>
+                <th pSortableColumn="servingUnit">
+                  Serving Unit <p-sortIcon field="servingUnit" />
+                </th>
+                <th pSortableColumn="servingSize">
+                  Serving Size <p-sortIcon field="servingSize" />
+                </th>
+                <th pSortableColumn="servings">
+                  Servings <p-sortIcon field="servings" />
+                </th>
+                <th pSortableColumn="totalQuantity">
+                  Total Quantity <p-sortIcon field="totalQuantity" />
+                </th>
+                <th pSortableColumn="Price">
+                  Price (€) <p-sortIcon field="price" />
+                </th>
+                <th pSortableColumn="pricePerServing">
+                  Price per serving (€) <p-sortIcon field="pricePerServing" />
+                </th>
                 <th>Actions</th>
+              </tr>
+              <tr>
+                <th>
+                  <p-columnFilter
+                    type="text"
+                    field="name"
+                    ariaLabel="Filter Name"
+                  />
+                </th>
+                <th>
+                  <p-columnFilter
+                    type="text"
+                    field="category"
+                    ariaLabel="Filter Category"
+                  />
+                </th>
+                <th>
+                  <p-columnFilter
+                    type="text"
+                    field="servingForm"
+                    ariaLabel="Filter ServingForm"
+                  />
+                </th>
+                <th>
+                  <p-columnFilter
+                    type="text"
+                    field="servingUnit"
+                    ariaLabel="Filter ServingUnit"
+                  />
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
               </tr>
             </ng-template>
 
@@ -63,48 +118,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-10">
-      <div class="mb-3">
-        <h1>Supplements</h1>
-      </div>
-      <div class="mb-2">
-        <button class="btn btn-success" routerLink="new-supplement">
-          Add new supplement
-        </button>
-      </div>
-      <p-table [value]="supplements">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Serving form</th>
-            <th>Serving unit</th>
-            <th>Serving size</th>
-            <th>Servings</th>
-            <th>Total quantity</th>
-            <th>Price</th>
-            <th>Price per serving</th>
-            <th></th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-supplement>
-          <tr>
-            <td>{{ supplement.name }}</td>
-            <td>{{ supplement.category }}</td>
-            <td>{{ supplement.servingForm }}</td>
-            <td>{{ supplement.servingUnit }}</td>
-            <td>{{ supplement.servingSize }}</td>
-            <td>{{ supplement.servings }}</td>
-            <td>{{ supplement.totalQuantity }}</td>
-            <td>{{ supplement.price }}</td>
-            <td>{{ supplement.pricePerServing }}</td>
-            <td></td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
-  </div>
-</div> -->

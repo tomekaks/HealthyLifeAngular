@@ -1,14 +1,22 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { SupplementsService } from './supplements.service';
 import { Supplement } from './supplement.model';
-import { TableModule } from 'primeng/table';
 import { RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
+import { TableModule } from 'primeng/table';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 @Component({
   selector: 'app-supplements',
   standalone: true,
-  imports: [TableModule, RouterLink, CurrencyPipe],
+  imports: [
+    TableModule,
+    RouterLink,
+    CurrencyPipe,
+    IconFieldModule,
+    InputIconModule,
+  ],
   templateUrl: './supplements.component.html',
   styleUrl: './supplements.component.css',
 })

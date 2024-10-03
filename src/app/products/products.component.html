@@ -3,29 +3,64 @@
     <div class="col-12">
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Products</h1>
-        <button class="btn btn-success mb-3" routerLink="new-product">
-          <i class="bi bi-plus-circle me-2"></i>Add new product
+        <button class="btn btn-success btn-lg" routerLink="new-product">
+          <i class="bi bi-plus-circle me-2"></i>Add New Product
         </button>
       </div>
 
       <div class="card shadow-lg">
         <div class="card-body">
-          <table class="table table-striped table-bordered">
-            <thead>
+          <p-table
+            #dt
+            [value]="products"
+            styleClass="p-datatable-striped p-datatable-hoverable p-datatable-gridlines p-datatable-sm"
+            [responsive]="true"
+            [paginator]="true"
+            [rows]="10"
+            [globalFilterFields]="['name']"
+          >
+            <ng-template pTemplate="caption">
+              <div class="mb-3">
+                <span class="p-input-icon-left">
+                  <input
+                    pInputText
+                    type="text"
+                    (input)="onGlobalFilter($event, dt)"
+                    placeholder="Search keyword"
+                  />
+                </span>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
               <tr>
-                <th>Name</th>
-                <th>Calories (g)</th>
-                <th>Fats (g)</th>
-                <th>Carbs (g)</th>
-                <th>Proteins (g)</th>
-                <th>Fiber (g)</th>
-                <th>Price (€)</th>
-                <th>Price per 100g protein (€)</th>
+                <th pSortableColumn="name">Name <p-sortIcon field="name" /></th>
+                <th pSortableColumn="calories">
+                  Calories (kcal) <p-sortIcon field="calories" />
+                </th>
+                <th pSortableColumn="fats">
+                  Fats (g) <p-sortIcon field="fats" />
+                </th>
+                <th pSortableColumn="carbs">
+                  Carbs (g) <p-sortIcon field="carbs" />
+                </th>
+                <th pSortableColumn="proteins">
+                  Proteins (g) <p-sortIcon field="proteins" />
+                </th>
+                <th pSortableColumn="fiber">
+                  Fiber (g) <p-sortIcon field="fiber" />
+                </th>
+                <th pSortableColumn="price">
+                  Price (€) <p-sortIcon field="price" />
+                </th>
+                <th pSortableColumn="pricePerProteins">
+                  Price per 100g Protein (€)
+                  <p-sortIcon field="pricePerProteins" />
+                </th>
                 <th>Actions</th>
               </tr>
-            </thead>
-            <tbody>
-              @for (product of products; track product.id) {
+            </ng-template>
+
+            <ng-template pTemplate="body" let-product>
               <tr>
                 <td>{{ product.name }}</td>
                 <td>{{ product.calories }}</td>
@@ -33,23 +68,26 @@
                 <td>{{ product.carbs }}</td>
                 <td>{{ product.proteins }}</td>
                 <td>{{ product.fiber }}</td>
-                <td>{{ product.price }}</td>
+                <td>{{ product.price | currency : "EUR" }}</td>
                 <td>{{ product.pricePerProteins | number : "1.2-2" }}</td>
                 <td>
-                  <button class="btn btn-info btn-sm me-2">
-                    <i class="bi bi-pencil-square"></i>Edit
+                  <button
+                    class="btn btn-info btn-sm me-2"
+                    (click)="editProduct(product)"
+                  >
+                    <i class="bi bi-pencil-square"></i>
                   </button>
                   <button
                     class="btn btn-danger btn-sm"
-                    (click)="removeProduct(product.id)"
+                    (click)="confirmDelete(product.id)"
                   >
-                    <i class="bi bi-trash"></i>Delete
+                    <i class="bi bi-trash"></i>
                   </button>
                 </td>
               </tr>
-              }
-            </tbody>
-          </table>
+            </ng-template>
+          </p-table>
+          <p-confirmDialog></p-confirmDialog>
         </div>
       </div>
     </div>
