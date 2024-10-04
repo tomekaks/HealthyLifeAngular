@@ -1,4 +1,81 @@
+@if (isLoading) {
+<app-loading></app-loading>
+} @else {
 <div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Exercises</h1>
+        <button class="btn btn-success btn-lg" routerLink="new-exercise">
+          <i class="bi bi-plus-circle me-2"></i>Add New Exercise
+        </button>
+      </div>
+
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <p-table
+            #dt
+            [value]="exercises"
+            styleClass="p-datatable-striped p-datatable-hoverable p-datatable-gridlines p-datatable-sm"
+            [responsive]="true"
+            [paginator]="true"
+            [rows]="10"
+            [globalFilterFields]="['name']"
+          >
+            <ng-template pTemplate="caption">
+              <div class="mb-3">
+                <span class="p-input-icon-left">
+                  <input
+                    pInputText
+                    type="text"
+                    (input)="onGlobalFilter($event, dt)"
+                    placeholder="Search keyword"
+                  />
+                </span>
+              </div>
+            </ng-template>
+
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="name">Name <p-sortIcon field="name" /></th>
+                <th pSortableColumn="caloriesPerHour">
+                  Calories Per Hour <p-sortIcon field="caloriesPerHour" />
+                </th>
+                <th>Actions</th>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-exercise>
+              <tr>
+                <td>{{ exercise.name }}</td>
+                <td>{{ exercise.caloriesPerHour }}</td>
+                <td>
+                  <button
+                    class="btn btn-info btn-sm me-2"
+                    [routerLink]="['edit-exercise', exercise.id]"
+                  >
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button
+                    class="btn btn-danger btn-sm"
+                    (click)="confirmDelete(exercise.id)"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+          <p-confirmDialog></p-confirmDialog>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+<!-- <div class="container mt-5">
   <div class="row">
     <div class="col-6">
       <div class="d-flex justify-content-between align-items-center mb-4">
@@ -42,4 +119,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

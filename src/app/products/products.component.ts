@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { type Product } from './product.model';
-import { NewProductComponent } from './new-product/new-product.component';
 import { ProductsService } from './products.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -14,7 +13,6 @@ import { ConfirmationService } from 'primeng/api';
   selector: 'app-products',
   standalone: true,
   imports: [
-    NewProductComponent,
     CommonModule,
     RouterLink,
     TableModule,
@@ -70,7 +68,6 @@ export class ProductsComponent {
       },
     });
   }
-  editProduct(product: Product) {}
 
   onGlobalFilter(event: Event, dt: Table) {
     const input = event.target as HTMLInputElement;
