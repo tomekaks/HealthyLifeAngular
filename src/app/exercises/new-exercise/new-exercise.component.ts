@@ -9,7 +9,7 @@ import {
 import { ExercisesService } from '../exercises.service';
 import { CreateExercise } from '../exercise.model';
 import { NgClass } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-new-exercise',
@@ -19,10 +19,11 @@ import { RouterLink } from '@angular/router';
   styleUrl: './new-exercise.component.css',
 })
 export class NewExerciseComponent implements OnInit {
-  exerciseForm: FormGroup = new FormGroup({});
-
   private exercisesService = inject(ExercisesService);
   private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
+
+  exerciseForm: FormGroup = new FormGroup({});
 
   ngOnInit(): void {
     this.initializeForm();
@@ -46,7 +47,9 @@ export class NewExerciseComponent implements OnInit {
     };
 
     this.exercisesService.addExercise(newExercise).subscribe({
-      next: () => {},
+      next: () => {
+        this.router.navigateByUrl('exercises');
+      },
       error: (error) => {
         console.error('Error while adding exercise', newExercise);
       },

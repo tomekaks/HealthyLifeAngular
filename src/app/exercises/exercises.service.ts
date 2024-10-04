@@ -1,19 +1,35 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Exercise, CreateExercise } from './exercise.model';
+import { Exercise, CreateExercise, UpdateExercise } from './exercise.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExercisesService {
+  private httpClient = inject(HttpClient);
   private apiUrl = 'https://localhost:44306/api/exercises';
 
-  constructor(private httpClient: HttpClient) {}
+  fetchExercises(): Observable<Exercise[]> {
+    return this.httpClient.get<Exercise[]>(this.apiUrl).pipe(
+      catchError((error) => {
+        console.error('Error fetching exercises:', error);
+        return throwError(() => new Error('Failed to load exercises.'));
+      })
+    );
+  }
+
+  fetchExercise(productId: number): Observable<Exercise> {
+    return this.httpClient.get<Exercise>(this.apiUrl + `/${productId}`).pipe(
+      catchError((error) => {
+        console.error('Error fetching exercise:', error);
+        return throwError(() => new Error('Failed to load exercise.'));
+      })
+    );
+  }
 
   addExercise(createExercise: CreateExercise): Observable<CreateExercise> {
-    console.log('Adding exercise');
     return this.httpClient
       .post<CreateExercise>(this.apiUrl, createExercise)
       .pipe(
@@ -33,15 +49,11 @@ export class ExercisesService {
     );
   }
 
-  loadExercises(): Observable<Exercise[]> {
-    return this.fetchExercises();
-  }
-
-  private fetchExercises(): Observable<Exercise[]> {
-    return this.httpClient.get<Exercise[]>(this.apiUrl).pipe(
+  updateExercise(exercise: UpdateExercise) {
+    return this.httpClient.put<UpdateExercise>(this.apiUrl, exercise).pipe(
       catchError((error) => {
-        console.error('Error fetching exercises:', error);
-        return throwError(() => new Error('Failed to load exercises.'));
+        console.error('Error updating exercise:', error);
+        return throwError(() => new Error('Failed to update exercise.'));
       })
     );
   }

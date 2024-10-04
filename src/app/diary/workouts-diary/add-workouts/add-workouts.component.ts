@@ -35,7 +35,7 @@ export class AddWorkoutsComponent implements OnInit {
 
   private fetchProducts() {
     console.log('fetching products');
-    this.exercisesService.loadExercises().subscribe({
+    this.exercisesService.fetchExercises().subscribe({
       next: (resData) => {
         this.exercises = resData;
       },

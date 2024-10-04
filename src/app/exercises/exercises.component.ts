@@ -35,7 +35,7 @@ export class ExercisesComponent {
   }
 
   private loadExercises(): void {
-    this.exercisesService.loadExercises().subscribe({
+    this.exercisesService.fetchExercises().subscribe({
       next: (resData) => {
         this.exercises = resData;
         this.isLoading = false;
@@ -68,7 +68,7 @@ export class ExercisesComponent {
         );
       },
       error: (error) => {
-        console.error('Error while removing exercise', exerciseId);
+        console.error('Error while removing exercise', error);
       },
     });
   }

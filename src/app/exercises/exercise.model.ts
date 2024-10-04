@@ -10,3 +10,8 @@ export interface CreateExercise {
   caloriesPerHour: number;
   createdBy: string;
 }
+
+export interface UpdateExercise {
+  id: number;
+  caloriesPerHour: number;
+}
