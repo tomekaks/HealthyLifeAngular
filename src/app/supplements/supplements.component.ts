@@ -3,7 +3,7 @@ import { SupplementsService } from './supplements.service';
 import { Supplement } from './supplement.model';
 import { RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
-import { TableModule } from 'primeng/table';
+import { Table, TableModule } from 'primeng/table';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 
@@ -25,7 +25,7 @@ export class SupplementsComponent implements OnInit {
   supplements: Supplement[] = [];
 
   ngOnInit(): void {
-    this.supplementsService.loadSupplements().subscribe({
+    this.supplementsService.fetchSupplements().subscribe({
       next: (resData) => {
         this.supplements = resData;
       },
@@ -35,13 +35,16 @@ export class SupplementsComponent implements OnInit {
     });
   }
 
-  editSupplement(supplement: Supplement) {}
-
   deleteSupplement(supplementId: number) {
     this.supplementsService.removeSupplement(supplementId).subscribe({
       error: (error) => {
         console.error('Error while removing supplement', error);
       },
     });
+  }
+
+  onGlobalFilter(event: Event, dt: Table) {
+    const input = event.target as HTMLInputElement;
+    dt.filterGlobal(input.value, 'contains');
   }
 }

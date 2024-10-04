@@ -7,11 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { PanelModule } from 'primeng/panel';
 import { RouterLink } from '@angular/router';
-import { DropdownModule } from 'primeng/dropdown';
-import { InputTextModule } from 'primeng/inputtext';
-import { InputNumberModule } from 'primeng/inputnumber';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 
 @Component({
@@ -34,10 +30,10 @@ export class NewSupplementComponent implements OnInit {
   ];
 
   servingUnits = [
-    { label: 'Grams (g)', value: 'g' },
+    { label: 'Grams (g)', value: 'gram' },
     { label: 'Milliliters (ml)', value: 'ml' },
-    { label: 'Capsule', value: 'Capsule' },
-    { label: 'Tablet', value: 'Tablet' },
+    { label: 'Capsule', value: 'capsule' },
+    { label: 'Tablet', value: 'tablet' },
   ];
 
   ngOnInit(): void {

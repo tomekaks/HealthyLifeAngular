@@ -17,7 +17,20 @@
             [responsive]="true"
             [paginator]="true"
             [rows]="10"
+            [globalFilterFields]="['name', 'category']"
           >
+            <ng-template pTemplate="caption">
+              <div class="mb-3">
+                <span class="p-input-icon-left">
+                  <input
+                    pInputText
+                    type="text"
+                    (input)="onGlobalFilter($event, dt)"
+                    placeholder="Search keyword"
+                  />
+                </span>
+              </div>
+            </ng-template>
             <ng-template pTemplate="header">
               <tr>
                 <th pSortableColumn="name">Name <p-sortIcon field="name" /></th>
@@ -47,7 +60,7 @@
                 </th>
                 <th>Actions</th>
               </tr>
-              <tr>
+              <!-- <tr>
                 <th>
                   <p-columnFilter
                     type="text"
@@ -82,7 +95,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
-              </tr>
+              </tr> -->
             </ng-template>
 
             <ng-template pTemplate="body" let-supplement>
@@ -99,15 +112,15 @@
                 <td>
                   <button
                     class="btn btn-info btn-sm me-2"
-                    (click)="editSupplement(supplement)"
+                    [routerLink]="['edit-supplement', supplement.id]"
                   >
-                    <i class="bi bi-pencil-square"></i> Edit
+                    <i class="bi bi-pencil-square"></i>
                   </button>
                   <button
                     class="btn btn-danger btn-sm"
                     (click)="deleteSupplement(supplement.id)"
                   >
-                    <i class="bi bi-trash"></i> Delete
+                    <i class="bi bi-trash"></i>
                   </button>
                 </td>
               </tr>
