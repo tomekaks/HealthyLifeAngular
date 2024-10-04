@@ -12,8 +12,8 @@ import { Product } from '../../../products/product.model';
   styleUrl: './add-meal-items.component.css',
 })
 export class AddMealItemsComponent implements OnInit {
-  private route = inject(ActivatedRoute);
   private productsService = inject(ProductsService);
+  private route = inject(ActivatedRoute);
   mealId: number = Number(this.route.snapshot.paramMap.get('mealId'));
   products: Product[] = [];
   isAddingMealItem = false;

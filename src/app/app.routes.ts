@@ -14,6 +14,7 @@ import { SupplementsComponent } from './supplements/supplements.component';
 import { NewSupplementComponent } from './supplements/new-supplement/new-supplement.component';
 import { NewProductComponent } from './products/new-product/new-product.component';
 import { NewExerciseComponent } from './exercises/new-exercise/new-exercise.component';
+import { EditProductComponent } from './products/edit-product/edit-product.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,6 +31,11 @@ export const routes: Routes = [
       {
         path: 'products/new-product',
         component: NewProductComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'products/edit-product/:productId',
+        component: EditProductComponent,
         canActivate: [authGuard],
       },
       {

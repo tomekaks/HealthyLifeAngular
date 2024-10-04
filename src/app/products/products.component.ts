@@ -62,6 +62,9 @@ export class ProductsComponent {
 
   removeProduct(productId: number) {
     this.productsService.removeProduct(productId).subscribe({
+      next: () => {
+        this.products = this.products.filter((prod) => prod.id !== productId);
+      },
       error: (error) => {
         console.error('Error while removing product', productId);
       },

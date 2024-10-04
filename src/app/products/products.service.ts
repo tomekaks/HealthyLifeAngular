@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CreateProduct, Product } from './product.model';
+import { CreateProduct, Product, UpdateProduct } from './product.model';
 import { HttpClient } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 
@@ -20,6 +20,14 @@ export class ProductsService {
 
   loadProducts() {
     return this.fetchProducts();
+  }
+
+  getProduct(productId: number) {
+    return this.httpClient.get<Product>(`${this.apiUrl}/${productId}`);
+  }
+
+  updateProduct(product: UpdateProduct) {
+    return this.httpClient.put(this.apiUrl, product);
   }
 
   private fetchProducts() {

@@ -8,7 +8,7 @@ import {
 import { ProductsService } from '../products.service';
 import { CreateProduct } from '../product.model';
 import { NgClass, NgIf } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-new-product',
@@ -20,6 +20,7 @@ import { RouterLink } from '@angular/router';
 export class NewProductComponent implements OnInit {
   private productsService = inject(ProductsService);
   private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
 
   productForm: FormGroup = new FormGroup({});
 
@@ -58,7 +59,9 @@ export class NewProductComponent implements OnInit {
     };
 
     this.productsService.addProduct(newProduct).subscribe({
-      next: () => {},
+      next: () => {
+        this.router.navigateByUrl('products');
+      },
       error: (error) => {
         console.error('Error while adding product', error);
       },

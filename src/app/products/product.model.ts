@@ -21,3 +21,13 @@ export interface CreateProduct {
   price: number;
   createdBy: string;
 }
+
+export interface UpdateProduct {
+  id: number;
+  calories: number;
+  proteins: number;
+  carbs: number;
+  fats: number;
+  fiber: number;
+  price: number;
+}
