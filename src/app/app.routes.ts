@@ -17,6 +17,7 @@ import { NewExerciseComponent } from './exercises/new-exercise/new-exercise.comp
 import { EditProductComponent } from './products/edit-product/edit-product.component';
 import { EditExerciseComponent } from './exercises/edit-exercise/edit-exercise.component';
 import { EditSupplementComponent } from './supplements/edit-supplement/edit-supplement.component';
+import { MicronutrientsComponent } from './micronutrients/micronutrients.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -68,6 +69,11 @@ export const routes: Routes = [
       {
         path: 'supplements/edit-supplement/:supplementId',
         component: EditSupplementComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'micronutrients',
+        component: MicronutrientsComponent,
         canActivate: [authGuard],
       },
       {
