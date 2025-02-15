@@ -1,1 +1,74 @@
-<p>micronutrients works!</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Micronutrients</h1>
+        <button class="btn btn-success btn-lg" routerLink="new-micronutrient">
+          <i class="bi bi-plus-circle me-2"></i>Add New Micronutrient
+        </button>
+      </div>
+
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <p-table
+            #dt
+            [value]="micronutrients"
+            styleClass="p-datatable-striped p-datatable-hoverable p-datatable-gridlines p-datatable-sm"
+            [responsive]="true"
+            [paginator]="true"
+            [rows]="10"
+            [globalFilterFields]="['name']"
+          >
+            <ng-template pTemplate="caption">
+              <div class="mb-3">
+                <span class="p-input-icon-left">
+                  <input
+                    pInputText
+                    type="text"
+                    (input)="onGlobalFilter($event, dt)"
+                    placeholder="Search keyword"
+                  />
+                </span>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="name">Name <p-sortIcon field="name" /></th>
+                <th pSortableColumn="dailyRecomendedIntakeMg">
+                  Daily recomended intake (Mg)
+                  <p-sortIcon field="dailyRecomendedIntakeMg" />
+                </th>
+                <th pSortableColumn="dailyIntakeLimitMg">
+                  Daily intake limit<p-sortIcon field="dailyIntakeLimitMg" />
+                </th>
+                <th>Actions</th>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-micronutrient>
+              <tr>
+                <td>{{ micronutrient.name }}</td>
+                <td>{{ micronutrient.dailyRecomendedIntakeMg }}</td>
+                <td>{{ micronutrient.dailyIntakeLimitMg }}</td>
+                <td>
+                  <button
+                    class="btn btn-info btn-sm me-2"
+                    [routerLink]="['edit-micronutrient', micronutrient.id]"
+                  >
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button
+                    class="btn btn-danger btn-sm"
+                    (click)="deleteMicronutrient(micronutrient.id)"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

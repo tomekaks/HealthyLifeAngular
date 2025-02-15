@@ -1,0 +1,94 @@
+@if (isLoading) {
+<app-loading></app-loading>
+} @else {
+<div
+  class="container d-flex justify-content-center align-items-center vh-75 mt-5"
+>
+  <div class="card w-50 shadow-lg">
+    <div class="card-header text-center bg-primary text-white">
+      <h2>Update Micronutrient</h2>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="micronutrientForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                micronutrientForm.get('name')?.invalid &&
+                micronutrientForm.get('name')?.touched
+            }"
+            readonly
+          />
+          <div class="invalid-feedback">Name is required.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="dailyRecomendedIntakeMg" class="form-label"
+            >Daily recomended intake (Mg)</label
+          >
+          <input
+            type="number"
+            id="dailyRecomendedIntakeMg"
+            formControlName="dailyRecomendedIntakeMg"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                micronutrientForm.get('dailyRecomendedIntakeMg')?.invalid &&
+                micronutrientForm.get('dailyRecomendedIntakeMg')?.touched
+            }"
+            required
+            min="0"
+          />
+          <div class="invalid-feedback">
+            Daily recomended intake must be greater than or equal to 0.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="dailyIntakeLimitMg" class="form-label"
+            >Daily intake limit (Mg)</label
+          >
+          <input
+            type="number"
+            id="dailyIntakeLimitMg"
+            formControlName="dailyIntakeLimitMg"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                micronutrientForm.get('dailyIntakeLimitMg')?.invalid &&
+                micronutrientForm.get('dailyIntakeLimitMg')?.touched
+            }"
+            required
+            min="0"
+          />
+          <div class="invalid-feedback">
+            Daily intake limit must be greater than or equal to 0.
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            routerLink="/micronutrients"
+          >
+            Back
+          </button>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="micronutrientForm.invalid"
+          >
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+}

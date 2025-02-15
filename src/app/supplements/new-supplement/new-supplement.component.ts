@@ -8,12 +8,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-new-supplement',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, NgClass, NgIf, NgFor],
+  imports: [ReactiveFormsModule, RouterLink, NgClass, NgFor],
   templateUrl: './new-supplement.component.html',
   styleUrl: './new-supplement.component.css',
 })
